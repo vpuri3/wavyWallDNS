@@ -1,0 +1,6 @@
+SOURCE_ROOT=/home/vpuri/Nek5000
+FC=mpixlf77
+FFLAGS= -qrealsize=8 -qdpc=e -qsuffix=cpp=f -qsuppress=cmpmsg
+CC=mpixlc
+CFLAGS=
+PPLIST= MPI TIMER
