@@ -1,1 +1,13 @@
+*0.f000*
+*.fld*
+*nek5000*
+obj/
+*.o
+*~
+*.ma2
+*.map
+*.re2
+.*
+makefile
 ref/*
+*.pdf
