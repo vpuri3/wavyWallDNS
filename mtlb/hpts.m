@@ -21,14 +21,16 @@
 %ymesh=ymesh*ones(1,nxmesh);
 
 %-----------------------------------------------------%
+clear;
+%-----------------------------------------------------%
 % points
-nx=151; % nx=number of x-points
-ny=150; % ny=number of y points per x-location
-h=0.40; % height to go up to in Y
-casename='roughWavyWall';
+nx=101; % nx=number of x-points
+ny=100; % ny=number of y points per x-location
+h=0.60; % height to go up to in Y
+casename='smoothWavyWall';
 %-----------------------------------------------------%
 % geometry
-[x,y]=meshgrid(0:nx:1,0:ny:h);
+[x,y]=meshgrid(linspace(0,1,nx),linspace(0,h,ny));
 [x,y,xw,yw] = wavyWall(x,y,casename);
 
 x = reshape(x,[nx*ny,1]);

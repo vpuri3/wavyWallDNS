@@ -96,7 +96,6 @@ epK=dlmread(t2,'',[N0 3 N1 3]);
 vdK=dlmread(t2,'',[N0 4 N1 4]);
 tkK=dlmread(t3,'',[N0 1 N1 1]);
 imK=dlmread(t3,'',[N0 2 N1 2]);
-div=dlmread(t3,'',[N0 3 N1 3]);
 %=============================================================
 % reshape
 %=============================================================
@@ -144,7 +143,6 @@ epK=reshape(epK,[ny,nx]);
 vdK=reshape(vdK,[ny,nx]);
 tkK=reshape(tkK,[ny,nx]);
 imK=reshape(imK,[ny,nx]);
-div=reshape(div,[ny,nx]);
 
 %=============================================================
 % geometry
@@ -162,8 +160,8 @@ elseif(strcmp(casename,'roughWavyWall'))
 end
 
 % create mesh
-xmesh=sem1dmesh(lx1,nelx,0)*xlen; % \in [0,1]
-ymesh=sem1dmesh(lx1,nely,1);
+xmesh=semmesh(lx1,nelx,0)*xlen; % \in [0,1]
+ymesh=semmesh(lx1,nely,1);
 nxmesh=length(xmesh);
 nymesh=length(ymesh);
 xmesh=ones(nymesh,1)*xmesh';
@@ -207,7 +205,7 @@ figname=[cname,'-','mesh'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % quiver plot
+if(0) % quiver plot
 %------------------------------
 Ix=1:10:nx;
 Iy=1:10:ny;
@@ -296,7 +294,7 @@ figname=[cname,'-','streamline'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % surface stresses
+if(0) % surface stresses
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -359,9 +357,11 @@ bplt(x,y,imK,im(:,:,1),im(:,:,2),im(:,:,3),Tmavg,visc,cname,'Imbalance','im');
 %-------------------------------------------------------------
 end
 %=============================================================
-if(0) % scalar fields
+if(1) % scalar fields
 %-------------------------------------------------------------
-cplt(x,y,xw,yw,uvar,1,cname,'Streamwise Velocity Variance','uvar','$$U^2$$');
+cplt(x,y,xw,yw,ep(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
+cplt(x,y,xw,yw,ep(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');
+cplt(x,y,xw,yw,ep(:,:,3),1,cname,'Dissipation','ep33','$$\epsilon_{11}$$');
 %=============================================================
 end
 %-------------------------------------------------------------

@@ -21,7 +21,7 @@ ax.FontSize=14;
 xlabel('$$x/\lambda$$');
 ylabel('$$y$$');
 xlim([min(min(x)),max(max(x))]);
-ylim([min(min(y)),max(max(y))]);
+ylim([min(min(y)),0.4]);
 
 plot(xw,yw,'k-','linewidth',2.0);
 pcolor(x,y,u*s);

@@ -14,7 +14,7 @@ ny = 100;
 N0=1;
 N1=nx*ny;
 
-dir = 'sww-m/';
+dir = 'sww-h/';
 c0  = [dir,casename,'.his'];
 u0  = [dir,'ave.dat'];
 tk  = [dir,'var.dat'];

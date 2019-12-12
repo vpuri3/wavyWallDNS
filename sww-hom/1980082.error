@@ -1,0 +1,17 @@
+2019-12-12 18:19:47.788 (INFO ) [0x4000122bde0] ibm.runjob.AbstractOptions: using properties file /bgsys/local/etc/bg.properties
+2019-12-12 18:19:47.790 (INFO ) [0x4000122bde0] ibm.runjob.AbstractOptions: max open file descriptors: 65536
+2019-12-12 18:19:47.790 (INFO ) [0x4000122bde0] ibm.runjob.AbstractOptions: core file limit: 18446744073709551615
+2019-12-12 18:19:47.791 (INFO ) [0x4000122bde0] 52538:tatu.runjob.client: scheduler job id is 1980082
+2019-12-12 18:19:47.796 (INFO ) [0x40000c334e0] 52538:tatu.runjob.monitor: monitor started
+2019-12-12 18:19:51.742 (INFO ) [0x40000c334e0] 52538:tatu.runjob.monitor: task record 3328767 created
+2019-12-12 18:19:51.743 (INFO ) [0x4000122bde0] CET-02400-13731-128:52538:ibm.runjob.client.options.Parser: set local socket to runjob_mux from properties file
+2019-12-12 18:20:01.120 (INFO ) [0x40000c334e0] 52538:tatu.runjob.monitor: tracklib completed
+2019-12-12 18:20:04.525 (INFO ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: job 3311162 started
+2019-12-12 18:21:53.776 (INFO ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: exited with status 228
+2019-12-12 18:21:53.776 (WARN ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: normal termination with status 228 from rank 0
+2019-12-12 18:21:53.776 (WARN ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: 1 INFO RAS event
+2019-12-12 18:21:53.777 (WARN ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: most recent RAS event text: DDR Correctable Error Summary : count=31 MCFIR error status:  [MEMORY_CE] This bit is set when a memory CE is detected on a non-maintenance memory read op;
+2019-12-12 18:21:53.777 (WARN ) [0x4000122bde0] CET-02400-13731-128:3311162:ibm.runjob.client.Job: with severity INFO
+2019-12-12 18:21:53.777 (INFO ) [0x4000122bde0] tatu.runjob.client: task exited with status 228
+2019-12-12 18:21:53.777 (INFO ) [0x40000c334e0] 52538:tatu.runjob.monitor: monitor terminating
+2019-12-12 18:21:53.781 (INFO ) [0x4000122bde0] tatu.runjob.client: monitor completed
