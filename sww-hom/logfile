@@ -18,7 +18,7 @@
  Number of processors: 8192
  REAL    wdsize      : 8
  INTEGER wdsize      : 4
- Timer accuracy      : 1.99E-07
+ Timer accuracy      : 2.00E-07
   
  Reading /projects/PANDAVal/vpuri/smoothWavyWall/p-hom/smoothWavyWall.rea                                                                    
  Reading /projects/PANDAVal/vpuri/smoothWavyWall/p-hom/smoothWavyWall.re2                                                                    
@@ -26,12 +26,12 @@
  Reading /projects/PANDAVal/vpuri/smoothWavyWall/p-hom/smoothWavyWall.ma2                                                                    
   
  element load imbalance:  0 4 4
- done :: mapping    .15052     sec
+ done :: mapping    .15461     sec
 
   
   preading mesh 
   preading bc for ifld 1
- done :: read .re2 file    3.2     sec
+ done :: read .re2 file    3.5     sec
 
  0  objects found
  118   Parameters from file:
@@ -60,7 +60,7 @@
  101      1.00000     p101 Number of additional modes to filter
  103      0.01        p103 weight of stabilizing filter (.01)
   
- done :: read .rea file    3.7488     sec
+ done :: read .rea file    4.0196     sec
 
  nelgt/nelgv/lelt:       32768       32768           8
  lx1  /lx2  /lx3 :           8           8           8
@@ -72,12 +72,12 @@
  done :: usrsetvert
 
 gs_setup: 3034276 unique labels shared
-   pairwise times (avg, min, max): 0.000459058 0.000370836 0.000591469
-   crystal router                : 0.00329815 0.0032542 0.00338178
+   pairwise times (avg, min, max): 0.000461497 0.000372671 0.000592895
+   crystal router                : 0.00327694 0.00323689 0.00334985
    used all_to_all method: pairwise
    handle bytes (avg, min, max): 27625.2 22140 32636
    buffer bytes (avg, min, max): 17632.1 12176 25008
-   setupds time 4.0382E-01 seconds   0  8     4261888       32768
+   setupds time 4.0210E-01 seconds   0  8     4261888       32768
  8  max multiplicity
  done :: setup mesh topology
   
@@ -97,12 +97,12 @@ gs_setup: 3034276 unique labels shared
  done :: usrsetvert
 
 gs_setup: 3034276 unique labels shared
-   pairwise times (avg, min, max): 0.000452857 0.000370923 0.000569219
-   crystal router                : 0.00327509 0.00323269 0.00334737
+   pairwise times (avg, min, max): 0.000454589 0.000375644 0.000547853
+   crystal router                : 0.00326001 0.00321653 0.0033375
    used all_to_all method: pairwise
    handle bytes (avg, min, max): 27625.2 22140 32636
    buffer bytes (avg, min, max): 17632.1 12176 25008
-   setupds time 4.0035E-01 seconds   1  8     4261888       32768
+   setupds time 3.9859E-01 seconds   1  8     4261888       32768
  8  max multiplicity
  done :: setup mesh topology
   
@@ -168,7 +168,7 @@ gs_setup: 3034276 unique labels shared
        FILE:avgsmoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   184.8MBps
+                              avg data-throughput =   180.8MBps
                               io-nodes =  8192
 
  xyz min     .00000E+00   .00000E+00   .00000E+00
@@ -186,7 +186,7 @@ gridpoints unique/tot:      11339776     16777216
   dofs: 11139072 11339776
   
  Initial time:  .2079935E+03
- Initialization successfully completed    6.3920     sec
+ Initialization successfully completed    6.7013     sec
 
  nsteps=0 -> skip time loop
  running solver in post processing mode
@@ -198,7 +198,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:avgsmoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   183.6MBps
+                              avg data-throughput =   185.6MBps
                               io-nodes =  8192
 
  uvwpt min  -.10798      -.61581E-01  -.49383E-01  -.87889E-01   .00000E+00
@@ -208,7 +208,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:rmssmoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   178.0MBps
+                              avg data-throughput =   175.3MBps
                               io-nodes =  8192
 
  uvwpt min   .00000E+00   .00000E+00   .00000E+00   .31766E-04   .00000E+00
@@ -218,7 +218,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:rm2smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   180.1MBps
+                              avg data-throughput =   178.6MBps
                               io-nodes =  8192
 
  uvwpt min  -.49202E-01  -.32175E-01  -.63884E-02  -.87889E-01   .00000E+00
@@ -228,7 +228,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i01smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   180.2MBps
+                              avg data-throughput =   169.2MBps
                               io-nodes =  8192
 
  uvwpt min  -17.397      -26.625      -1.3899      -4.6216      -3.2438    
@@ -238,7 +238,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i02smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   181.5MBps
+                              avg data-throughput =   179.3MBps
                               io-nodes =  8192
 
  uvwpt min  -.68018      -1.9602      -6.8571      -.95476       .33604E-30
@@ -248,7 +248,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i03smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   176.5MBps
+                              avg data-throughput =   171.1MBps
                               io-nodes =  8192
 
  uvwpt min   1.0300       .00000E+00   .39488E-36   .12627E-05   .00000E+00
@@ -258,7 +258,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i04smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   179.1MBps
+                              avg data-throughput =   169.4MBps
                               io-nodes =  8192
 
  uvwpt min   .79212E-31   .74395       .00000E+00  -4.7706      -132.09    
@@ -268,7 +268,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i05smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   180.4MBps
+                              avg data-throughput =   179.5MBps
                               io-nodes =  8192
 
  uvwpt min  -21.304      -27.756      -416.67      -3.8580      -7.7920    
@@ -278,7 +278,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i06smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   178.4MBps
+                              avg data-throughput =   180.3MBps
                               io-nodes =  8192
 
  uvwpt min  -104.15      -3.3430      -.66336E-01  -.55020E-02  -.35769E-02
@@ -288,7 +288,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i07smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   176.5MBps
+                              avg data-throughput =   175.6MBps
                               io-nodes =  8192
 
  uvwpt min  -.43744E-02  -.45129E-01  -.27175E-01  -.34376E-03  -.41299E-02
@@ -298,7 +298,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i08smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   179.9MBps
+                              avg data-throughput =   178.4MBps
                               io-nodes =  8192
 
  uvwpt min  -.12550E-02  -.27465E-02  -.12366E-02  -.14010E-02  -.55041E-02
@@ -308,7 +308,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i09smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   179.5MBps
+                              avg data-throughput =   182.4MBps
                               io-nodes =  8192
 
  uvwpt min  -1.3147      -5.8879      -.63565E-01  -.38951      -.58828    
@@ -318,7 +318,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i10smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   181.0MBps
+                              avg data-throughput =   175.0MBps
                               io-nodes =  8192
 
  uvwpt min  -.48140E-01  -.18970      -.74245      -.35164E-01   .00000E+00
@@ -328,7 +328,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i11smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   163.3MBps
+                              avg data-throughput =   183.3MBps
                               io-nodes =  8192
 
  uvwpt min   .00000E+00   .00000E+00  -.62175      -.50509      -.79522E-01
@@ -338,7 +338,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i12smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   178.8MBps
+                              avg data-throughput =   180.4MBps
                               io-nodes =  8192
 
  uvwpt min  -.11928      -.10041      -.31182E-01  -.31173E-01  -.72416E-01
@@ -348,7 +348,7 @@ gridpoints unique/tot:      11339776     16777216
        FILE:i13smoothWavyWall0.f00001                                                                                                           
 
         0  2.0799E+02 done :: Read checkpoint data
-                              avg data-throughput =   179.5MBps
+                              avg data-throughput =   175.5MBps
                               io-nodes =  8192
 
  uvwpt min  -.11873      -.98345      -.99644      -.18721      -.18721    
@@ -358,35 +358,31 @@ gridpoints unique/tot:      11339776     16777216
  dump history points
  reading history points
  found  10100  points
- Rewriting file: ins.dat
-             L1/L2 DIV(V)           1.9246E-12   2.4019E-04
+             L1/L2 DIV(V)           8.0434E-13   4.9139E-02
              L1/L2 QTL              0.0000E+00   0.0000E+00
-             L1/L2 DIV(V)-QTL       1.9246E-12   2.4019E-04
+             L1/L2 DIV(V)-QTL       8.0434E-13   4.9139E-02
  in geom_avg_tke(...)avgtyp: -4
  in avg_tensor(...)avgtyp: -4
  Plnr averaging in direction 3
 gs_setup: 65536 unique labels shared
-   pairwise times (avg, min, max): 0.00153909 0.00103723 0.00184127
-   crystal router                : 0.00143137 0.00141974 0.00146063
-   all reduce                    : 0.00802478 0.00792265 0.00803714
+   pairwise times (avg, min, max): 0.00154172 0.00100365 0.00182575
+   crystal router                : 0.00142014 0.00140921 0.00145129
+   all reduce                    : 0.00801668 0.00791527 0.00803059
    used all_to_all method: crystal router
    handle bytes (avg, min, max): 162193 105340 209276
    buffer bytes (avg, min, max): 15411 8192 21504
  Geom averaging in direction 1 nrep 4
 gs_setup: 2873025 unique labels shared
-   pairwise times (avg, min, max): 0.00325229 0.00277429 0.00361622
-   crystal router                : 0.0132119 0.0130663 0.0134137
+   pairwise times (avg, min, max): 0.00325133 0.00275309 0.00352176
+   crystal router                : 0.0132115 0.0130611 0.0134134
    used all_to_all method: pairwise
    handle bytes (avg, min, max): 112502 93724 125028
    buffer bytes (avg, min, max): 151998 116624 178064
  Calculating uiuj...
  Outpost:
  dump history points
- Rewriting file: ave.dat
  dump history points
- Rewriting file: var.dat
  dump history points
- Rewriting file: cov.dat
  Calculating dissipation...
  Calculating production...
  Calculating pressure transport..
@@ -398,61 +394,49 @@ gs_setup: 2873025 unique labels shared
  Calculating convection..
  Outpost:
  dump history points
- Rewriting file: cn1.dat
  dump history points
- Rewriting file: ep1.dat
  dump history points
- Rewriting file: pr1.dat
  dump history points
- Rewriting file: pt1.dat
  dump history points
- Rewriting file: td1.dat
  dump history points
- Rewriting file: pd1.dat
  dump history points
- Rewriting file: ps1.dat
  dump history points
- Rewriting file: vd1.dat
  in comp_tke(...)
 atime: 2.07993500E+02
-tkmax: 4.99035303E-02
-tk_L2: 1.72013785E-02
-immax: 2.35922823E-02
-im_L2: 4.74534648E-03
+tkmax: 3.85077065E-02
+tk_L2: 1.27208106E-02
+immax: 3.48587040E-02
+im_L2: 3.83260996E-03
  Umax: 1.24405721E+00
- Uave: 1.00112651E+00
- kmax: 4.99035303E-02
- kave: 1.48136672E-02
+ Uave: 1.00110778E+00
+ kmax: 3.85077065E-02
+ kave: 1.09879809E-02
  in comp_uplus(...)
  in comp_wallShear(...)
  area: 8.17693091E+00
 xdrag: 2.90789232E-02
 ydrag: 5.82822251E-03
-zdrag:-1.47486386E-05
-Mdrag: 2.96572448E-02
-Tmavg: 3.62694085E-03
-Ufavg: 6.02240886E-02
+zdrag: 2.05075001E-23
+Mdrag: 2.96572411E-02
+Tmavg: 3.62694040E-03
+Ufavg: 6.02240849E-02
 gs_setup: 131072 unique labels shared
-   pairwise times (avg, min, max): 0.000148649 6.22151e-05 0.000344944
-   crystal router                : 0.000726586 0.000706352 0.000751788
+   pairwise times (avg, min, max): 0.000148912 6.28132e-05 0.000345268
+   crystal router                : 0.000725749 0.000706572 0.000748682
    used all_to_all method: pairwise
    handle bytes (avg, min, max): 12035.1 10960 25252
    buffer bytes (avg, min, max): 2280 1024 26624
  dump history points
- Rewriting file: tk1.dat
  dump history points
- Rewriting file: tk2.dat
  dump history points
- Rewriting file: tk3.dat
  dump history points
- Rewriting file: upl.dat
 
         0  2.0799E+02 Write checkpoint
        FILE:/projects/PANDAVal/vpuri/smoothWavyWall/p-hom/tk1smoothWavyWall0.f00001                                                             
 
         0  2.0799E+02 done :: Write checkpoint
                               file size =     514.E+00MB
-                              avg data-throughput =   154.5MB/s
+                              avg data-throughput =   152.2MB/s
                               io-nodes =  8192
 
 
@@ -461,7 +445,7 @@ gs_setup: 131072 unique labels shared
 
         0  2.0799E+02 done :: Write checkpoint
                               file size =     514.E+00MB
-                              avg data-throughput =   153.7MB/s
+                              avg data-throughput =   155.7MB/s
                               io-nodes =  8192
 
  done :: userchk
@@ -471,14 +455,14 @@ gs_setup: 131072 unique labels shared
 
         0  2.0799E+02 done :: Write checkpoint
                               file size =     514.E+00MB
-                              avg data-throughput =   166.0MB/s
+                              avg data-throughput =   170.0MB/s
                               io-nodes =  8192
 
   
 run successful: dying ...
   
   
-total elapsed time             :   7.32944E+01 sec
+total elapsed time             :   7.24894E+01 sec
 total solver time w/o IO       :   0.00000E+00 sec
 time/timestep                  :   0.00000E+00 sec
 avg throughput per timestep    :   0.00000E+00 gridpts/CPUs

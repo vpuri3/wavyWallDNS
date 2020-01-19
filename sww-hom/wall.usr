@@ -88,7 +88,7 @@ c
           call load_budgets_incomp(readstats)
       endif
 
-c     call hom_budgets(3)
+      call hom_budgets(3)
 
       call sample(vx,vy,vz,pr,t,'ins',
      $           'vx','vy','vz','pr','garbage')

@@ -1,14 +1,24 @@
 %=============================================================
 clear;
 format compact; format shorte;
+%-------------------------------------------------------------
+cname='sww';
+%-------------------------------------------------------------
+if(strcmp(cname,'sww'))
+	casename = 'smoothWavyWall';
+	name = 'Smooth Wavy Wall';
+else
+	casename = 'roughWavyWall';
+	name = 'Rough Wavy Wall';
+end
+%-------------------------------------------------------------
 
 N0=1;
 N1=129;
 %=============================================================
-% reading sww
+% reading hom
 
-dir = 'sww-line/';
-casename='smoothWavyWall';
+dir = [cname,'-line/'];
 nu=1/4780;
 c0=[casename,'.his'];
 
@@ -67,7 +77,7 @@ imI = -cnI + prI + ptI + tdI + epI + vdI;
 % reading sww homogenized
 
 dir = 'sww-hom/';
-casename='smoothWavyWall';
+dir = [cname,'-hom/'];
 nu=1/4780;
 c0=[casename,'.his'];
 
@@ -134,7 +144,7 @@ sb   = 1 /(utauI ^4/nu);
 
 %=============================================================
 if(1)
-ttl = ['Turbulent Kinetic Energy Budgets'];
+ttl = [name,' TKE Budgets'];
 %------------------------------
 figure; fig=gcf; ax=gca; ax.FontSize=14;
 ax.XScale='linear'; ax.YScale='linear';
@@ -146,6 +156,7 @@ xlabel('$$\frac{\bar{y}/H}{\nu/u_\tau}$$');
 %ylabel('$$\frac{\dot{\eta_{ij}}}{u_\tau^4/\nu}$$');
 ylabel('$$\dot{\eta_{ij}}$$');
 
+%plot(ypI(I),tkKI(I),'mo' ,'linewidth',1.00,'displayname','TKE');
 plot(ypI(I),cnKI(I),'mo' ,'linewidth',1.00,'displayname','convection');
 plot(ypI(I),prKI(I),'ro' ,'linewidth',1.00,'displayname','production');
 plot(ypI(I),pdKI(I),'go' ,'linewidth',1.00,'displayname','pres diff');
@@ -153,6 +164,7 @@ plot(ypI(I),tdKI(I),'co' ,'linewidth',1.00,'displayname','turb diff');
 plot(ypI(I),vdKI(I),'ko' ,'linewidth',1.00,'displayname','visc diff');
 plot(ypI(I),epKI(I),'bo' ,'linewidth',1.00,'displayname','dissipation');
 %
+%plot(ypI,tkKH,'m-' ,'linewidth',1.00,'displayname','TKE');
 plot(ypH,cnKH,'m-','linewidth',2.00,'displayname','Hom convection');
 plot(ypH,prKH,'r-','linewidth',2.00,'displayname','Hom production');
 plot(ypH,pdKH,'g-','linewidth',2.00,'displayname','Hom pres diff');

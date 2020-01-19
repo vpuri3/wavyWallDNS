@@ -357,7 +357,10 @@ bplt(x,y,imK,im(:,:,1),im(:,:,2),im(:,:,3),Tmavg,visc,cname,'Imbalance','im');
 %-------------------------------------------------------------
 end
 %=============================================================
-if(1) % scalar fields
+bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection Hom','cnH');
+bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation Hom','epH');
+%=============================================================
+if(0) % scalar fields
 %-------------------------------------------------------------
 cplt(x,y,xw,yw,ep(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
 cplt(x,y,xw,yw,ep(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');

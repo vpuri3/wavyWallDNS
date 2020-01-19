@@ -8,4 +8,4 @@ rm -f *.output
 rm -f *.error
 rm -f logfile
 rm -f xxt_map.rea
-qsub -n $2 --mode c64 -t 0:10:00 -o ./logfile -A PANDAval -q default ./nek5000
+qsub -n $2 --mode c64 -t 0:05:00 -o ./logfile -A PANDAval -q default ./nek5000
