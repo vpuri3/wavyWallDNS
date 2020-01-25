@@ -9,5 +9,5 @@ obj/
 *.re2
 .*
 makefile
-ref/*
+wavyWallRef/
 *.pdf
