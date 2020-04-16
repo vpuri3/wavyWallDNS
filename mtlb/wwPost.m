@@ -205,7 +205,7 @@ figname=[cname,'-','mesh'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % quiver plot
+if(1) % quiver plot
 %------------------------------
 Ix=1:10:nx;
 Iy=1:10:ny;
@@ -294,7 +294,7 @@ figname=[cname,'-','streamline'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % surface stresses
+if(1) % surface stresses
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -319,7 +319,7 @@ figname=[cname,'-','stress'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % attachment/reattachment point
+if(1) % attachment/reattachment point
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -344,7 +344,7 @@ figname=[cname,'-','separation'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % RS, TK Budgets
+if(1) % RS, TK Budgets
 %-------------------------------------------------------------
 bplt(x,y,tkK,tk(:,:,1),tk(:,:,2),tk(:,:,3),Tmavg,visc,cname,'Reynolds Stresses','rs');
 bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection','cn');
@@ -360,7 +360,7 @@ end
 bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection Hom','cnH');
 bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation Hom','epH');
 %=============================================================
-if(0) % scalar fields
+if(1) % scalar fields
 %-------------------------------------------------------------
 cplt(x,y,xw,yw,ep(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
 cplt(x,y,xw,yw,ep(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');
