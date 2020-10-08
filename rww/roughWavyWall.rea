@@ -4,18 +4,18 @@
          118  PARAMETERS FOLLOW
    1.00000     p001 DENSITY
   -4780.00     p002 VISCOS
-   000.000     p003 # tSTATSTART
-   2.00000     p004 # tSTATFREQ
-   1.00000     p005 # readSTAT
+   100.000     p003 # tSTATSTART
+   040.000     p004 # tSTATFREQ
+   2.00000     p005 # readSTAT
    0.00000     p006
    0.00000     p007 RHOCP
    1.00000     p008 CONDUCT
    0.00000     p009
-   00.0000     p010 FINTIME
-   0000.00     p011 NSTEPS
-  -4.0e-4      p012 DT
+   000.000     p010 FINTIME
+   00000.0     p011 NSTEPS
+  -4.00E-4     p012 DT
    0.00000     p013 IOCOMM
-   2.00000     p014 IOTIME
+   40.0000     p014 IOTIME
    0000.00     p015 IOSTEP
    0.00000     p016 PSSOLVER: 0=default
    0.00000     p017
@@ -102,9 +102,9 @@
    0.00000     p098
    4.00000     p099 dealiasing: <0--> off/3--> old/4--> new
    0.00000     p100
-   1.00000     p101 Number of additional modes to filter
+   0.00000     p101 Number of additional modes to filter
    0.00000     p102 Dump out divergence at each time step
-   0.01        p103 weight of stabilizing filter (.01)
+   0.00        p103 weight of stabilizing filter (.01)
    0.00000     p104
    0.00000     p105
    0.00000     p106
@@ -141,9 +141,8 @@
  F      IFCHAR
    5.00000       5.00000      -2.75000      -2.75000     XFAC,YFAC,XZERO,YZERO
  **MESH DATA** 6 lines are X,Y,Z;X,Y,Z. Columns corners 1-4;5-8
-     -131072  3        131072     NELT,NDIM,NELV
-           1  PRESOLVE/RESTART OPTIONS  *****
-restart0.f00001
+      -98304  3         98304     NELT,NDIM,NELV
+           0  PRESOLVE/RESTART OPTIONS  *****
            7          INITIAL CONDITIONS *****
 C Default
 C Default

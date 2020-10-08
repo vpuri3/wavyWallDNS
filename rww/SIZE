@@ -14,21 +14,21 @@ c
       parameter (lxd=12)               ! p-order for over-integration (dealiasing) 
       parameter (lx2=lx1-0)            ! p-order for pressure (lx1 or lx1-2)
                                      
-      parameter (lelg=131072)           ! max total number of elements
-      parameter (lpmin=8192)            ! min MPI ranks
-      parameter (lpmax=lelg)            ! max MPI ranks
-      parameter (ldimt=1)               ! max auxiliary fields (temperature + scalars)
+      parameter (lelg=100000)           ! max total number of elements
+      parameter (lpmin=512)           ! min MPI ranks
+      parameter (lpmax=lelg)           ! max MPI ranks
+      parameter (ldimt=1)              ! max auxiliary fields (temperature + scalars)
 
       ! OPTIONAL
-      parameter (lhis=40000)            ! max history points
-      parameter (maxobj=1)              ! max number of objects
-      parameter (lpert=3)               ! max perturbation modes
-      parameter (toteq=5)               ! max number of conserved scalars in cmt
-      parameter (nsessmax=2)            ! max sessions
-      parameter (lxo=lx1)               ! max grid size on output (lxo>=lx1)
-      parameter (lelx=32,lely=8,lelz=16)! global tensor mesh dimensions
-      parameter (mxprev=20,lgmres=40)   ! max dim of projection & Krylov space
-      parameter (lorder=3)              ! max order in time
+      parameter (lhis=4000)            ! max history points
+      parameter (maxobj=1)             ! max number of objects
+      parameter (lpert=1)              ! max perturbation modes
+      parameter (toteq=1)              ! max number of conserved scalars in cmt
+      parameter (nsessmax=1)           ! max sessions
+      parameter (lxo=lx1)              ! max grid size on output (lxo>=lx1)
+      parameter (lelx=32,lely=8,lelz=16) ! global tensor mesh dimensions
+      parameter (mxprev=20,lgmres=40)  ! max dim of projection & Krylov space
+      parameter (lorder=3)             ! max order in time
 
       parameter (lelt=lelg/lpmin + 4)  ! max number of local elements per MPI rank
       parameter (lx1m=1)               ! polynomial order mesh solver

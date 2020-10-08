@@ -9,8 +9,8 @@ fig=gcf;ax=gca; hold on;grid on;
 % title
 title(['Wavy Wall ',qtyname,' Profile' ],'fontsize',14);
 % ax
-xlim([-0.01 1.01]);
-ylim([-0.01 0.50]);
+xlim([-0.01 1.0]);
+ylim([min(min(yrw))-1e-2,0.50]);
 ax.XScale='linear';
 ax.YScale='linear';
 xlabel('$$x/\lambda$$');
@@ -30,7 +30,7 @@ p=plot(xrw,yrw,'k--','linewidth',1.5);
 p.HandleVisibility='off';
 
 % RWW
-for i=1:10
+for i=1:10:91
 	p=plot(xqR(:,i),yR(:,i),'k-','linewidth',2.0);
 	p.HandleVisibility='off';
 end
@@ -38,7 +38,7 @@ p.HandleVisibility='on';
 p.DisplayName='RWW';
 
 % SWW
-for i=1:10
+for i=1:10:91
 	p=plot(xqS(:,i),yS(:,i),'r-','linewidth',2.0);
 	p.HandleVisibility='off';
 end

@@ -1,0 +1,487 @@
+/----------------------------------------------------------\\
+|      _   __ ______ __ __  ______  ____   ____   ____     |
+|     / | / // ____// //_/ / ____/ / __ \\/ __ \\/ __ \\   |
+|    /  |/ // __/  / ,<   /___ \\ / / / // / / // / / /    |
+|   / /|  // /___ / /| | ____/ / / /_/ // /_/ // /_/ /     |
+|  /_/ |_//_____//_/ |_|/_____/  \\___/ \\___/ \\___/      |
+|                                                          |
+|----------------------------------------------------------|
+|                                                          |
+| NEK5000:  Open Source Spectral Element Solver            |
+| COPYRIGHT (c) 2008-2017 UCHICAGO ARGONNE, LLC            |
+| Version:  v17.0                                          |
+| Web:      http://nek5000.mcs.anl.gov                     |
+|                                                          |
+\\----------------------------------------------------------/
+                                                              
+
+ Number of processors:         512
+ REAL    wdsize      :           8
+ INTEGER wdsize      :           4
+ Timer accuracy      : 7.15E-07
+  
+ Reading /lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/run/wavyWall/rww-nofilt/p6/roughWavyWall.rea                                     
+ Reading /lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/run/wavyWall/rww-nofilt/p6/roughWavyWall.re2                                     
+ mapping elements to processors
+ Reading /lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/run/wavyWall/rww-nofilt/p6/roughWavyWall.ma2                                     
+  
+ element load imbalance:            0         192         192
+ done :: mapping   0.32915     sec
+
+  
+  preading mesh 
+  preading bc for ifld           1
+ done :: read .re2 file   0.93     sec
+
+           0  objects found
+ 118   Parameters from file:
+   1      1.00000     p001 DENSITY
+   2     -4780.00     p002 VISCOS
+   3      100.000     p003 # tSTATSTART
+   4      040.000     p004 # tSTATFREQ
+   5      2.00000     p005 # readSTAT
+   8      1.00000     p008 CONDUCT
+  12     -4.00E-4     p012 DT
+  14      40.0000     p014 IOTIME
+  18      0.50000E-01 p018 GRID < 0 --> # cells on screen
+  21      0.10000E-06     p021 DIVERGENCE	# after using 0 to see
+  22      0.10000E-08     p022 HELMHOLTZ
+  24     0.100000E-01 p024 TOLREL
+  25     0.100009E-01 p025 TOLABS
+  26      1.000000    p26 COURANT/NTAU
+  27      2.000000    p27 TORDER
+  54     -1.00000     p054 fixed flow rate dir: |p54|=1,2,3=x,y,z
+  55      1.00000     p055 vol.flow rate (p54>0) or Ubar (p54<0)
+  59      1.00000     p059 !=0 --> full Jac. eval. for each el.
+  65      1.00000     p065 #iofiles (eg, 0 or 64); <0 --> sep. dirs
+  66      6.00000     p066 output : <0=ascii, else binary
+  67      6.00000     p067 restart: <0=ascii, else binary
+  93      20.0000     p093 Number of previous pressure solns saved
+  94      3.00000     p094 start projecting velocity after p94 step
+  95      5.00000     p095 start projecting pressure after p95 step
+  99      4.00000     p099 dealiasing: <0--> off/3--> old/4--> new
+  
+ done :: read .rea file    1.6344     sec
+
+ nelgt/nelgv/lelt:       98304       98304         199
+ lx1  /lx2  /lx3 :           8           8           8
+ Reset the target Courant number to .5
+ setup mesh topology
+   Right-handed check complete for   98304 elements. OK.
+   setvert3d:   8    12685312    33918976    12685312    12685312
+ call usrsetvert
+ done :: usrsetvert
+
+gs_setup: 2683838 unique labels shared
+   pairwise times (avg, min, max): 0.000310852 0.000270009 0.000360012
+   crystal router                : 0.00183781 0.0018116 0.00188181
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 814726 766572 864780
+   buffer bytes (avg, min, max): 184383 140384 236816
+   setupds time 6.5104E-01 seconds   0  8    12685312       98304
+           8  max multiplicity
+ done :: setup mesh topology
+  
+ call usrdat
+ done :: usrdat
+
+ generate geometry data
+ NOTE: All elements deformed , param(59) ^=0
+ done :: generate geometry data
+  
+ call usrdat2
+ add temp:            2           1           0
+ setup mesh topology
+   Right-handed check complete for   98304 elements. OK.
+   setvert3d:   8    12685312    33918976    12685312    12685312
+ call usrsetvert
+ done :: usrsetvert
+
+gs_setup: 2683838 unique labels shared
+   pairwise times (avg, min, max): 0.000283329 0.000243497 0.000347018
+   crystal router                : 0.00225141 0.0022249 0.00229001
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 814726 766572 864780
+   buffer bytes (avg, min, max): 184383 140384 236816
+   setupds time 5.1443E-01 seconds   1  8    12685312       98304
+           8  max multiplicity
+ done :: setup mesh topology
+  
+ done :: usrdat2
+
+ regenerate geometry data           1
+ NOTE: All elements deformed , param(59) ^=0
+ done :: regenerate geometry data           1
+  
+ verify mesh topology
+  0.000000000000000E+000   4.00000000000000       Xrange
+ -7.000000000000001E-002   1.00000000000000       Yrange
+  0.000000000000000E+000   2.00000000000000       Zrange
+ done :: verify mesh topology
+  
+ IFTRAN   = T
+ IFFLOW   = T
+ IFHEAT   = T
+ IFSPLIT  = T
+ IFLOMACH = F
+ IFUSERVP = F
+ IFUSERMV = F
+ IFPERT   = F
+ IFADJ    = F
+ IFSTRS   = F
+ IFCHAR   = F
+ IFCYCLIC = F
+ IFAXIS   = F
+ IFMVBD   = F
+ IFMELT   = F
+ IFNEKNEK = F
+ IFSYNC   = F
+   
+ IFVCOR   = T
+ IFINTQ   = F
+ IFGEOM   = F
+ IFSURT   = F
+ IFWCNO   = F
+   
+ IFTMSH for field           1    =  F
+ IFADVC for field           1    =  T
+ IFNONL for field           1    =  F
+   
+ IFTMSH for field           2    =  T
+ IFADVC for field           2    =  T
+ IFNONL for field           2    =  F
+   
+ Dealiasing enabled, lxd=          12
+ verify mesh topology
+  0.000000000000000E+000   4.00000000000000       Xrange
+ -7.000000000000001E-002   1.00000000000000       Yrange
+  0.000000000000000E+000   2.00000000000000       Zrange
+ done :: verify mesh topology
+  
+ call usrdat3
+ done :: usrdat3
+
+ set initial conditions
+ Checking restart options: restart0.f00001                                                                                                                     
+ nekuic (1) for ifld            1
+ nekuic (1) for ifld            2
+ Reading checkpoint data 
+       FILE:
+ restart0.f00001                                                                
+                                                      
+
+        0  3.2000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1201.6MBps
+                              io-nodes =   512
+
+ xyz min     0.0000     -0.70000E-01   0.0000    
+ uvwpt min -0.63458     -0.73826     -0.86473     -0.44319       0.0000    
+ xyz max     4.0000       1.0000       2.0000    
+ uvwpt max   1.5929      0.65582      0.71296      0.42238       0.0000    
+ Restart: recompute geom. factors.
+ regenerate geometry data           1
+ NOTE: All elements deformed , param(59) ^=0
+ done :: regenerate geometry data           1
+  
+ done :: set initial conditions
+  
+gridpoints unique/tot:      33918976     50331648
+  dofs:              33517568              33918976
+  
+ Initial time: 0.3200004E+03
+ Initialization successfully completed    4.6529     sec
+
+ nsteps=0 -> skip time loop
+ running solver in post processing mode
+
+ call userchk
+      0   3.2000036E+02   1.0000000E+00  -5.7473991E-14   1.4209622E-03  -5.1286729E-04   3.4927209E-01   8.9277732E-02   1.0764937E-01   3.4745345E-02   1.5929353E+00   7.3826367E-01   8.6473125E-01   4.4319105E-01 e2
+ in postProcess(...)avgtyp          -4
+ Reading checkpoint data 
+       FILE:
+ avgroughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1152.8MBps
+                              io-nodes =   512
+
+ uvwpt min -0.12679     -0.87083E-01 -0.79273E-01 -0.18819       0.0000    
+ uvwpt max   1.3158      0.22891      0.77322E-01  0.16517       0.0000    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ rmsroughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1181.5MBps
+                              io-nodes =   512
+
+ uvwpt min   0.0000       0.0000       0.0000      0.52978E-04   0.0000    
+ uvwpt max   1.7378      0.55793E-01  0.85650E-01  0.37878E-01   0.0000    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ rm2roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1490.6MBps
+                              io-nodes =   512
+
+ uvwpt min -0.75201E-01 -0.46396E-01 -0.17119E-01 -0.18819       0.0000    
+ uvwpt max  0.15586      0.48403E-01  0.13737E-01  0.16517       0.0000    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i01roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1223.4MBps
+                              io-nodes =   512
+
+ uvwpt min  -77.198      -29.926      -1.3828      -41.937      -12.840    
+ uvwpt max   12.840       190.33       1.6035       9.0080       77.198    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i02roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1018.5MBps
+                              io-nodes =   512
+
+ uvwpt min  -1.1656      -7.8155      -11.607      -1.1377       0.0000    
+ uvwpt max  0.99848       9.4110       10.346       1.2491       6711.1    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i03roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1269.6MBps
+                              io-nodes =   512
+
+ uvwpt min   1.3844       0.0000       0.0000      0.16493E-07   0.0000    
+ uvwpt max   40630.       92.043       1992.3       6711.1       67.126    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i04roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =   929.3MBps
+                              io-nodes =   512
+
+ uvwpt min   0.0000       1.0270       0.0000      -102.94      -645.28    
+ uvwpt max   1828.7       3015.8       56.113       3503.7       14535.    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i05roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1255.3MBps
+                              io-nodes =   512
+
+ uvwpt min  -35.232      -449.71      -1683.4      -5.6779      -330.37    
+ uvwpt max   4.5460       443.09       1760.6       6.1281       269.33    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i06roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1351.2MBps
+                              io-nodes =   512
+
+ uvwpt min  -765.10      -6.0694     -0.12759     -0.26046E-01 -0.95868E-02
+ uvwpt max   789.43       5.5276      0.50201E-01  0.22432E-01  0.82856E-02
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i07roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1311.7MBps
+                              io-nodes =   512
+
+ uvwpt min -0.79418E-02 -0.75405E-01 -0.43603E-01 -0.18875E-02 -0.95524E-02
+ uvwpt max   2.3032      0.12617      0.44006E-01  0.38472E-01  0.93804E-02
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i08roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =   945.7MBps
+                              io-nodes =   512
+
+ uvwpt min -0.42302E-02 -0.66354E-02 -0.45956E-02 -0.32933E-02 -0.18235E-01
+ uvwpt max  0.41411E-01  0.14376E-01  0.35882E-02  0.19500E-01  0.16542E-01
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i09roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1110.5MBps
+                              io-nodes =   512
+
+ uvwpt min  -6.0157      -32.913     -0.13130      -5.0098      -8.1950    
+ uvwpt max   8.1951       7.8658      0.11916       3.0379       6.0157    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i10roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1384.3MBps
+                              io-nodes =   512
+
+ uvwpt min -0.76420E-01  -1.1601      -1.4956     -0.14236       0.0000    
+ uvwpt max  0.72939E-01   1.4047       1.2735      0.42327       0.0000    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i11roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1486.3MBps
+                              io-nodes =   512
+
+ uvwpt min   0.0000       0.0000      -4.9901      -1.8839     -0.11414    
+ uvwpt max   0.0000       0.0000       1.4638       3.9707      0.12797    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i12roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1287.9MBps
+                              io-nodes =   512
+
+ uvwpt min  -1.7408     -0.62948     -0.68547E-01 -0.35881     -0.21032    
+ uvwpt max  0.91196E-01  0.71409      0.61914E-01  0.32710      0.22497    
+ Reading statistics for atime:    160.000000005300     
+ Reading checkpoint data 
+       FILE:
+ i13roughWavyWall0.f00002                                                       
+                                                      
+
+        0  1.6000E+02 done :: Read checkpoint data
+                              avg data-throughput =  1430.7MBps
+                              io-nodes =   512
+
+ uvwpt min -0.32331      -7.3304      -4.3340     -0.25595     -0.25595    
+ uvwpt max  0.60068E-01   3.2890       4.5693      0.23394      0.23394    
+ Reading statistics for atime:    160.000000005300     
+ dump history points
+ reading history points
+ found          400  points
+             L1/L2 DIV(V)          -1.2812E-13   5.6762E-04
+             L1/L2 QTL              0.0000E+00   0.0000E+00
+             L1/L2 DIV(V)-QTL      -1.2812E-13   5.6762E-04
+ in geom_avg_tke(...)avgtyp:          -4
+ in avg_tensor(...)avgtyp:          -4
+ Plnr averaging in direction           3
+gs_setup: 196608 unique labels shared
+   pairwise times (avg, min, max): 0.00037209 0.000251889 0.000464416
+   crystal router                : 0.000725367 0.000707984 0.000748491
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 972701 898532 1074020
+   buffer bytes (avg, min, max): 246584 134144 392192
+ Geom averaging in direction           1 nrep           4
+gs_setup: 8555625 unique labels shared
+   pairwise times (avg, min, max): 0.0115348 0.0109328 0.0117348
+   crystal router                : 0.0302118 0.0299784 0.0304342
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 3.69003e+06 3590364 3765188
+   buffer bytes (avg, min, max): 3.9821e+06 3780672 4137136
+ Calculating uiuj...
+ Outpost:
+ dump history points
+ dump history points
+ dump history points
+ Calculating dissipation...
+ Calculating production...
+ Calculating pressure transport..
+ Calculating pressure diffusion..
+ Calculating pressure strain..
+ Calculating viscous diffusion..
+ Calculating turbulent diffusion..
+ Calculating buoyancy..
+ Calculating convection..
+ Outpost:
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ in comp_tke(...)
+atime: 1.60000000E+02
+tkmax: 6.77487250E-02
+tk_L2: 2.38039709E-02
+immax: 5.83843193E-02
+im_L2: 5.66470176E-04
+ Umax: 1.31483234E+00
+ Uave: 1.00235717E+00
+ kmax: 6.77487250E-02
+ kave: 2.04081422E-02
+ in comp_uplus(...)
+ in comp_wallShear(...)
+ area: 8.89275596E+00
+xdrag: 1.02314026E-02
+ydrag: 1.01439928E-02
+zdrag: 1.37923338E-05
+Mdrag: 1.44077194E-02
+Tmavg: 1.62016359E-03
+Ufavg: 4.02512558E-02
+gs_setup: 262144 unique labels shared
+   pairwise times (avg, min, max): 0.000121213 8.49962e-05 0.000145602
+   crystal router                : 0.000352788 0.000340796 0.000364113
+   used all_to_all method: pairwise
+   handle bytes (avg, min, max): 442830 431836 478072
+   buffer bytes (avg, min, max): 28800 15360 94720
+ dump history points
+ dump history points
+ dump history points
+ dump history points
+ done :: userchk
+
+        0  1.6000E+02 Write checkpoint
+       FILE:
+ /lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/run/wavyWall/rww-nofilt/p6/r
+ oughWavyWall0.f00001                                 
+
+        0  1.6000E+02 done :: Write checkpoint
+                              file size =     154.E+01MB
+                              avg data-throughput =   160.3MB/s
+                              io-nodes =   512
+
+  
+run successful: dying ...
+  
+  
+total elapsed time             :   4.23069E+01 sec
+total solver time w/o IO       :   0.00000E+00 sec
+time/timestep                  :   0.00000E+00 sec
+avg throughput per timestep    :   0.00000E+00 gridpts/CPUs
+total max memory usage         :   2.28203E+02 GB
+

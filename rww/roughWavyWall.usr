@@ -15,6 +15,8 @@ C-----------------------------------------------------------------------
 # define tSTATSTART param(3)
 # define tSTATFREQ  param(4)
 # define readSTAT   param(5)
+c
+#define PI (4.*atan(1.))
 C-----------------------------------------------------------------------
       include 'budgets.usr'
       include 'tke.usr'
@@ -111,6 +113,10 @@ c-----------------------------------------------------------------------
       include 'SIZE'
       include 'TOTAL'
 
+c     if(mod(istep,10).eq.0) call e2_out
+
+c     call budgets_incomp_avg(tSTATFREQ,tSTATSTART,readSTAT)
+
       integer nelx,nely,nelz
       integer avgtyp,readstats,idir_plnr,idir_line,idir_geom
       integer idir_sctr,iface
@@ -133,29 +139,9 @@ c-----------------------------------------------------------------------
       data    gs_sctr_hndl / 0 /
  
       nelx      = 128
-      nely      = 32
+      nely      = 24
       nelz      = 32
  
-c--------------------
-c     avgtyp    = -4 ! -ve: plnr, 0: line, mag>1: nrep for geomavg
-c     readstats = int(readSTAT)
-
-c     idir_sctr = 2
-c     idir_line = 0
-c     idir_plnr = 3
-c     idir_geom = 1
-
-c     iface     = 1
-c     bctyp     = 'W  '
-c     
-c     call e2_out
-
-c     call postProcess(nelx,nely,nelz,avgtyp,readstats
-c    $                ,gs_line_hndl,idir_line
-c    $                ,gs_plnr_hndl,idir_plnr
-c    $                ,gs_geom_hndl,idir_geom
-c    $                ,gs_sctr_hndl,idir_sctr,iface,bctyp)
-c--------------------
       avgtyp    = -4 ! -ve: plnr, 0: line, mag>1: nrep for geomavg
       readstats = int(readSTAT)
  
@@ -163,7 +149,7 @@ c--------------------
       idir_line = 2
       idir_plnr = 3
       idir_geom = 1
-
+ 
       iface     = 1
       bctyp     = 'W  '
       
@@ -232,7 +218,7 @@ c---------
 
       domainHeight = 1.0*lambda
       yStartDomain = 0.0
-      yEndDomain   = ( delta + domainHeight )
+      yEndDomain   = domainHeight !( delta + domainHeight )
 
       domainSpan   = 2.0*lambda
       zStartDomain = 0.0
@@ -254,6 +240,8 @@ c---------
         ym1(i,1,1,1) = yy 
       enddo
 
+      yStartDomain = - (delta + delta2)
+
       scale = 1./hmax			! scale by the depth of the domain (hmax)
       call rescale_x(xm1, xStartDomain*scale, xEndDomain*scale)
       call rescale_x(ym1, yStartDomain*scale, yEndDomain*scale)
@@ -268,7 +256,6 @@ c-----------------------------------------------------------------------
 
       param(54) = -1
       param(55) = 1
-
       return
       end
 C=======================================================================
@@ -321,8 +308,9 @@ c-----------------------------------------------------------------------
       amp = 1.e-4
       amp = 0.1
 
-      one = 1.
-      pi2 = 8.*atan(one)
+c     one = 1.
+c     pi2 = 8.*atan(one)
+      pi2 = 2*PI
 
       xx  = x/xmax
       yy  = cos(pi2*xx)
@@ -335,11 +323,11 @@ c-----------------------------------------------------------------------
 c-----------------------------------------------------------------------
       FUNCTION bottomSWW(x, delta, alambda, delta2, frequency)
 
-      ONE = 1.0
-      PI  = 4.0*ATAN(ONE)
+c     ONE = 1.0
+c     PI  = 4.0*ATAN(ONE)
 
 !..   superpose the perturbation wave on top of the smooth wavy wall
-      y   = delta*COS(2.0*PI*x/alambda) 
+      y   = delta *COS(2.0*PI*x/alambda) 
      &     +delta2*COS(2.0*frequency*PI*x/alambda)
 
       bottomSWW = y

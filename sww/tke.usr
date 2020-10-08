@@ -25,11 +25,7 @@ c
       call rzero(epk,ntot)
       call rzero(vdk,ntot)
       call rzero(tkk,ntot)
-      call rzero(imb,ntot)
-c
-      call rzero(iL2,ntot)
-      call rzero(div,ntot) ! <ui,i> == 0
-      call rzero(dL2,ntot)
+      call rzero(imk,ntot)
 c
       do i=1,ntot
          cnk(i,1,1,1)=conv_uu(i,1,1,1)+conv_vv(i,1,1,1)+conv_ww(i,1,1,1)
@@ -55,97 +51,18 @@ c
      $                 vrms(i,1,1,1)-vavg(i,1,1,1)*vavg(i,1,1,1)+
      $                 wrms(i,1,1,1)-wavg(i,1,1,1)*wavg(i,1,1,1))
 c
-         imb(i,1,1,1) = - cnk(i,1,1,1) + prk(i,1,1,1) + ptk(i,1,1,1)
+         imk(i,1,1,1) = - cnk(i,1,1,1) + prk(i,1,1,1) + ptk(i,1,1,1)
      $                  + tdk(i,1,1,1) + epk(i,1,1,1) + vdk(i,1,1,1)
-c
-         iL2(i,1,1,1)=    imb(i,1,1,1)*    imb(i,1,1,1)
-         div(i,1,1,1)= udxavg(i,1,1,1)+ vdyavg(i,1,1,1)+ wdzavg(i,1,1,1)
-         dL2(i,1,1,1)=    div(i,1,1,1)*    div(i,1,1,1)
       enddo
 
       tkmax=glmax(tkk,ntot)
-      call avg_3d(tkave,tkk)
+      call comp_L2(tk_L2,tkk)
 
-      immax=glmax(imb,ntot)
-      call avg_3d(imave,imb)
-      call avg_3d(im_L2,iL2)
-      im_L2 = sqrt(im_L2)
-
-      call avg_3d(divL2,dL2)
-      divL2 = sqrt(divL2)
+      immax=glmax(imk,ntot)
+      call comp_L2(im_L2,imk)
 
       return
       end
-c-----------------------------------------------------------------------
-      subroutine geom_avg_tke2(avgtyp,nelx,nely,nelz,ifld
-     $                        ,gs_line_hndl,idir_line
-     $                        ,gs_plnr_hndl,idir_plnr
-     $                        ,gs_geom_hndl,idir_geom)
-      include 'SIZE'
-      include 'TOTAL'
-      include 'TKEINCOMP'
-
-      integer avgtyp
-c
-      integer ntot
-
-      if(nid.eq.0)write(6,*)'in geom_avg_tke2(...)','avgtyp',avgtyp
-
-      ntot = lx1*ly1*lz1*nelv
-
-      call avg_tensor_wrapper(cnk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(prk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(ptk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(pdk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(psk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(tdk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(epk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(vdk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(tkk,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(imb,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-      call avg_tensor_wrapper(div,avgtyp,nelx,nely,nelz,ifld
-     $                       ,gs_line_hndl,idir_line
-     $                       ,gs_plnr_hndl,idir_plnr
-     $                       ,gs_geom_hndl,idir_geom)
-
-      call avg_3d(tkave,tkk)
-      call avg_3d(imave,imb)
-      tkmax = glmax(tkk,ntot)
-      immax = glmax(imb,ntot)
-
-      return
-      end
-
 c-----------------------------------------------------------------------
       subroutine geom_avg_tke(avgtyp,nelx,nely,nelz,ifld
      $                       ,gs_line_hndl,idir_line
@@ -526,6 +443,76 @@ c
      $                       ,gs_line_hndl,idir_line
      $                       ,gs_plnr_hndl,idir_plnr
      $                       ,gs_geom_hndl,idir_geom)
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine hom_budgets(idir)
+      include 'SIZE'
+      include 'TOTAL'
+      include 'AVG'
+      include 'BUDGETSINCOMP'
+
+      integer idir
+
+      integer ntot
+
+      if(nid.eq.0)write(6,*)'Homogenizing budgets in direction',idir
+
+      ntot = lx1*ly1*lz1*nelv
+
+      if(idir.eq.1) then
+      endif
+      if(idir.eq.2) then
+      endif
+      if(idir.eq.3) then
+        call rzero(wavg,ntot)
+        call rzero(wrms,ntot)
+        call rzero(vwms,ntot)
+        call rzero(wums,ntot)
+
+        call rzero(udzavg,ntot)
+        call rzero(vdzavg,ntot)
+        call rzero(wdxavg,ntot)
+        call rzero(wdyavg,ntot)
+        call rzero(wdzavg,ntot)
+        call rzero(udzrms,ntot)
+        call rzero(vdzrms,ntot)
+        call rzero(wdzrms,ntot)
+        call rzero(wdxrms,ntot)
+        call rzero(wdyrms,ntot)
+        call rzero(uvdzms,ntot)
+        call rzero(uwdxms,ntot)
+        call rzero(uwdyms,ntot)
+        call rzero(uwdzms,ntot)
+        call rzero(vwdxms,ntot)
+        call rzero(vwdyms,ntot)
+        call rzero(vwdzms,ntot)
+
+        call rzero(wpavg,ntot)
+        call rzero(wtavg,ntot)
+
+        call rzero(uuwavg,ntot)
+        call rzero(uvwavg,ntot)
+        call rzero(uwwavg,ntot)
+        call rzero(vvwavg,ntot)
+        call rzero(vwwavg,ntot)
+        call rzero(wwwavg,ntot)
+
+        call rzero(dpdzavg,ntot)
+
+        call rzero(udpdzavg,ntot)
+        call rzero(vdpdzavg,ntot)
+        call rzero(wdpdxavg,ntot)
+        call rzero(wdpdyavg,ntot)
+        call rzero(wdpdzavg,ntot)
+
+        call rzero(pudzavg,ntot)
+        call rzero(pvdzavg,ntot)
+        call rzero(pwdxavg,ntot)
+        call rzero(pwdyavg,ntot)
+        call rzero(pwdzavg,ntot)
+      endif
 
       return
       end

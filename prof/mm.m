@@ -94,6 +94,7 @@ xvvM = xM + uvScale*vvM;
 xwwM = xM + uvScale*wwM;
 xppM = xM + uvScale*ppM;
 xuvM = xM + uvScale*uvM;
+pause
 
 %=============================================================
 % reading Nek (velocity plots)

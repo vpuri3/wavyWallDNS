@@ -1,10 +1,8 @@
-function vf(nx,ny,casename,visc)
+function wwPost(nx,ny,casename,visc)
 
-% nx --> number of x-points
-% ny --> number of y-points per x-point
+% nx/ny --> # points in x/y
 %
-% example: vf(200,200,'smoothWavyWall',1/4780) 
-%          vf(200,200,'roughWavyWall',1/4780) 
+% example: >> wwPost(101,101,'sww',1/4780) 
 %
 
 %=============================================================
@@ -156,7 +154,7 @@ if(strcmp(casename,'smoothWavyWall'))
 	nely=16;
 elseif(strcmp(casename,'roughWavyWall'))
 	nelx=128;
-	nely=32;
+	nely=24;
 end
 
 % create mesh
@@ -205,7 +203,7 @@ figname=[cname,'-','mesh'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % quiver plot
+if(0) % quiver plot
 %------------------------------
 Ix=1:10:nx;
 Iy=1:10:ny;
@@ -294,7 +292,7 @@ figname=[cname,'-','streamline'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % surface stresses
+if(0) % surface stresses
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -319,13 +317,13 @@ figname=[cname,'-','stress'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % attachment/reattachment point
+if(0) % attachment/reattachment point
 %------------------------------
 figure;
 fig=gcf;ax=gca;
 hold on;grid on;
 % title
-title([casename,' Velocity off the all '],'fontsize',14)
+title([casename,' $$v_x$$ at first point off the wall '],'fontsize',14)
 % pos
 %daspect([1,2,1]);
 set(fig,'position',[585,1e3,1000,500])
@@ -344,15 +342,15 @@ figname=[cname,'-','separation'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % RS, TK Budgets
+if(0) % RS, TK Budgets
 %-------------------------------------------------------------
 bplt(x,y,tkK,tk(:,:,1),tk(:,:,2),tk(:,:,3),Tmavg,visc,cname,'Reynolds Stresses','rs');
-bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection','cn');
+%bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection','cn');
 bplt(x,y,prK,pr(:,:,1),pr(:,:,2),pr(:,:,3),Tmavg,visc,cname,'Production','pr');
-bplt(x,y,ptK,pt(:,:,1),pt(:,:,2),pt(:,:,3),Tmavg,visc,cname,'Pressure Transport','pt');
-bplt(x,y,tdK,td(:,:,1),td(:,:,2),td(:,:,3),Tmavg,visc,cname,'Turbulent Diffusion','td');
-bplt(x,y,vdK,vd(:,:,1),vd(:,:,2),vd(:,:,3),Tmavg,visc,cname,'Viscous Diffusion','vd');
-bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation','ep');
+%bplt(x,y,ptK,pt(:,:,1),pt(:,:,2),pt(:,:,3),Tmavg,visc,cname,'Pressure Transport','pt');
+%bplt(x,y,tdK,td(:,:,1),td(:,:,2),td(:,:,3),Tmavg,visc,cname,'Turbulent Diffusion','td');
+%bplt(x,y,vdK,vd(:,:,1),vd(:,:,2),vd(:,:,3),Tmavg,visc,cname,'Viscous Diffusion','vd');
+%bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation','ep');
 bplt(x,y,imK,im(:,:,1),im(:,:,2),im(:,:,3),Tmavg,visc,cname,'Imbalance','im');
 %-------------------------------------------------------------
 end
@@ -360,7 +358,7 @@ end
 bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection Hom','cnH');
 bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation Hom','epH');
 %=============================================================
-if(1) % scalar fields
+if(0) % scalar fields
 %-------------------------------------------------------------
 cplt(x,y,xw,yw,ep(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
 cplt(x,y,xw,yw,ep(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');
@@ -368,10 +366,10 @@ cplt(x,y,xw,yw,ep(:,:,3),1,cname,'Dissipation','ep33','$$\epsilon_{11}$$');
 %=============================================================
 end
 %-------------------------------------------------------------
-if(0) % line plots
+if(1) % line plots
 %------------------------------
-ixx    =[1            ceil(0.5*nx)               ceil(0.7*nx)];
-ixxmesh=[(1+(0)*lx1) (1+(0.25*nelx*0.5)*(lx1-1)) 0           ];
+ixx    =[1 ceil(0.5*nx)             ceil(0.7*nx)];
+ixxmesh=[1 (1+(nelx/4*0.5)*(lx1-1)) 0           ];
 
 % scale
 s = 1/Tmavg; % RS
@@ -382,7 +380,8 @@ for i=1:length(ixx)
 	ixmesh=ixxmesh(i);
 
 	strx = num2str(x(1,ix));
-	ymw  = y(:,ix) - y(1,ix);
+	ymw  = (y(:,ix)-y(1,ix)) / (1-y(1,ix));
+	ymsh = 0.5*(1+semmesh(nely,lx1,1));
 
 	figure;
 	fig=gcf;ax=gca;
@@ -404,11 +403,15 @@ for i=1:length(ixx)
 	plot(ymw,epK(:,ix)*s,'-','linewidth' ,1.50,'DisplayName',['Dissipation'])
 	plot(ymw,imK(:,ix)*s,'k-','linewidth',1.50,'DisplayName',['Imbalance'])
 	% mesh
-	%plot(ymesh(:,ixmesh),0*ymesh(:,ixmesh),'kx','linewidth',1.00,'DisplayName',['Mesh'])
+	plot(ymsh,0*ymsh,'kx','linewidth',1.00,'DisplayName',['Mesh'])
+
+	xlim([0,0.3]);
 	%------------------------------
 	figname=[cname,'-','tke-budgets-x=',strx];
 	saveas(fig,figname,'jpeg');
+	%------------------------------
 end
+
 end
 %=============================================================
 end

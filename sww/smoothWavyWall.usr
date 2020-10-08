@@ -19,8 +19,8 @@ c
 #define PI (4.*atan(1.))
 C-----------------------------------------------------------------------
       include 'budgets.usr'
-      include 'tke.usr'
       include 'wall.usr'
+      include 'tke.usr'
 C-----------------------------------------------------------------------
       subroutine uservp(ix,iy,iz,eg) ! set variable properties
       include 'SIZE'
@@ -112,6 +112,10 @@ c-----------------------------------------------------------------------
       subroutine userchk()
       include 'SIZE'
       include 'TOTAL'
+
+c     if(mod(istep,10).eq.0) call e2_out
+c     
+c     call budgets_incomp_avg(tSTATFREQ,tSTATSTART,readSTAT)
 
       integer nelx,nely,nelz
       integer avgtyp,readstats,idir_plnr,idir_line,idir_geom
@@ -207,14 +211,14 @@ c---------
 
       domainHeight = 1.0*lambda
       yStartDomain = 0.0
-      yEndDomain   = ( delta + domainHeight )
+      yEndDomain   = domainHeight ! ( delta + domainHeight )
 
       domainSpan   = 2.0*lambda
       zStartDomain = 0.0
       zEndDomain   = domainSpan
 
       call rescale_x(xm1, xStartDomain, xEndDomain)
-      call rescale_x(ym1, yStartDomain, yEndDomain) ! y \in [0,L+d]
+      call rescale_x(ym1, yStartDomain, yEndDomain)
       call rescale_x(zm1, zStartDomain, zEndDomain)
 
       nt = nx1*ny1*nz1*nelt
@@ -225,14 +229,15 @@ c---------
         yw = bottomSWW(x, delta, lambda)
 
         yy = (1. - yw/yEndDomain)*y + yw	! 0->yw & ymax=fix
-c  y \in [-d,L+d]
+
         ym1(i,1,1,1) = yy 
       enddo
+
+      yStartDomain = -delta
 
       scale = 1./hmax			! scale by the depth of the domain (hmax)
       call rescale_x(xm1, xStartDomain*scale, xEndDomain*scale)
       call rescale_x(ym1, yStartDomain*scale, yEndDomain*scale)
-c y \in [0,L+d]
       call rescale_x(zm1, zStartDomain*scale, zEndDomain*scale)
 
       return

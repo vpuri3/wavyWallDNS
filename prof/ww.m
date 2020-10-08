@@ -5,13 +5,13 @@ format compact; format shorte;
 %=============================================================
 % reading SWW
 casename='smoothWavyWall';
-nx = 10;
-ny = 100;
+nx = 101;
+ny = 101;
 
 N0=1;
 N1=nx*ny;
 
-dir = 'sww-h/';
+dir = '../sww/';
 c0  = [dir,casename,'.his'];
 u0  = [dir,'ave.dat'];
 tk  = [dir,'var.dat'];
@@ -57,24 +57,24 @@ vvS=reshape(vvS,[ny,nx]);
 wwS=reshape(wwS,[ny,nx]);
 ppS=reshape(ppS,[ny,nx]);
 uvS=reshape(uvS,[ny,nx]);
-vwS=reshape(vwS,[ny,nx]);
+wS=reshape(vwS,[ny,nx]);
 wuS=reshape(wuS,[ny,nx]);
 
 prKS=reshape(prKS,[ny,nx]);
 tkKS=reshape(tkKS,[ny,nx]);
 
-xS  = xS - 2;
+xS  = xS - min(min(xS));
 
 %=============================================================
 % reading RWW
 casename='roughWavyWall';
-nx = 10;
-ny = 100;
+nx = 101;
+ny = 101;
 
 N0=1;
 N1=nx*ny;
 
-dir = 'rww/';
+dir = '../rww/';
 c0  = [dir,casename,'.his'];
 u0  = [dir,'ave.dat'];
 tk  = [dir,'var.dat'];
@@ -126,7 +126,7 @@ wuR=reshape(wuR,[ny,nx]);
 prKR=reshape(prKR,[ny,nx]);
 tkKR=reshape(tkKR,[ny,nx]);
 
-xR  = xR - 2;
+xR  = xR - min(min(xR));
 
 %=============================================================
 % bottom wall
@@ -139,8 +139,8 @@ y = 0*x;
 
 %=============================================================
 prof(xsw,ysw,xrw,yrw,xS,yS,uS ,xR,yR,uR,0.08,'u','Streamwise Velocity');
-%prof(xsw,ysw,xrw,yrw,xS,yS,uuS,xR,yR,uuR,1,'uu','$$\eta_{11}$$');
+prof(xsw,ysw,xrw,yrw,xS,yS,uuS,xR,yR,uuR,1,'uu','$$\eta_{11}$$');
 prof(xsw,ysw,xrw,yrw,xS,yS,-uvS,xR,yR,-uvR,2,'uv','$$-\eta_{12}$$');
-%prof(xsw,ysw,xrw,yrw,xS,yS,prKS,xR,yR,prKR,0.2,'prK','TKE Production');
+prof(xsw,ysw,xrw,yrw,xS,yS,prKS,xR,yR,prKR,0.2,'prK','TKE Production');
 %=============================================================
 

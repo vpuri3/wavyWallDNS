@@ -17,19 +17,18 @@ elseif(strcmp(casename,'roughWavyWall'))
 	d2=0.4*d;
 end
 
-% bottom wall
 xw=x(1,:);
+H =max(max(y));
+
+% dimensional
 xw=xw*l;
-yw=d*cos(2*pi*xw/l);
-ys=yw; % sww just for reference
+yw=   d *cos(2*pi*xw/l  );
 yw=yw+d2*cos(2*pi*xw/l*f);
-H=l+d; %H=l+d+d2; % should be but isn't
+
+% nondim
 sx=1/l;
 xw=xw*sx;
-sy=H/(H+d+d2);
-H =H*sx;
-yw=(yw+d+d2)*sy*sx;
-ys=(ys+d+d2)*sy*sx; % smooth wall just for reference
+yw=yw*sx;
 
 yd=(1-yw/H).*y+yw;
 

@@ -30,7 +30,7 @@ title([casename,' ',bgtname,' $$\frac{1}{2}\eta_{ii}$$'],'fontsize',14);
 hcb=colorbar; title(hcb,ttl,'interpreter','latex','fontsize',14);
 xlabel('$$x/\lambda$$');
 ylabel('$$y$$');
-ylim([0,0.4]);
+ylim([min(min(y))-1e-2,0.4]);
 %------
 subplot(4,1,2); grid on;
 pcolor(x,y,ux*s); shading interp; colormap jet; colorbar;
@@ -39,7 +39,7 @@ title([casename,' ',bgtname,' $$\eta_{11}$$'],'fontsize',14);
 hcb=colorbar; title(hcb,ttl,'interpreter','latex','fontsize',14);
 xlabel('$$x/\lambda$$');
 ylabel('$$y$$');
-ylim([0,0.4]);
+ylim([min(min(y))-1e-2,0.4]);
 %------
 subplot(4,1,3); grid on;
 pcolor(x,y,uy*s); shading interp; colormap jet; colorbar;
@@ -48,7 +48,7 @@ title([casename,' ',bgtname,' $$\eta_{22}$$'],'fontsize',14);
 hcb=colorbar; title(hcb,ttl,'interpreter','latex','fontsize',14);
 xlabel('$$x/\lambda$$');
 ylabel('$$y$$');
-ylim([0,0.4]);
+ylim([min(min(y))-1e-2,0.4]);
 %------
 subplot(4,1,4); grid on;
 pcolor(x,y,uz*s); shading interp; colormap jet; colorbar;
@@ -57,7 +57,7 @@ title([casename,' ',bgtname,' $$\eta_{33}$$'],'fontsize',14);
 hcb=colorbar; title(hcb,ttl,'interpreter','latex','fontsize',14);
 xlabel('$$x/\lambda$$');
 ylabel('$$y$$');
-ylim([0,0.4]);
+ylim([min(min(y))-1e-2,0.4]);
 %------------------------------
 figname=[cname,'-',bgt];
 saveas(fig,figname,'jpeg');

@@ -15,12 +15,12 @@ c
       parameter (lx2=lx1-0)            ! p-order for pressure (lx1 or lx1-2)
                                      
       parameter (lelg=32768)           ! max total number of elements
-      parameter (lpmin=8192)           ! min MPI ranks
+      parameter (lpmin=128)           ! min MPI ranks
       parameter (lpmax=lelg)           ! max MPI ranks
       parameter (ldimt=1)              ! max auxiliary fields (temperature + scalars)
 
       ! OPTIONAL
-      parameter (lhis=40000)           ! max history points
+      parameter (lhis=4000)            ! max history points
       parameter (maxobj=1)             ! max number of objects
       parameter (lpert=1)              ! max perturbation modes
       parameter (toteq=1)              ! max number of conserved scalars in cmt

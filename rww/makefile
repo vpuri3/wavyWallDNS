@@ -1,23 +1,23 @@
-### makefile automatically created by makenek 07/30/2019 15:07:05 ###
+### makefile automatically created by makenek 10/06/2020 18:04:41 ###
 BINNAME=nek5000
 LIBNAME=libnek5000.a
 CASENAME:=roughWavyWall
-CASEDIR:=/projects/PANDAVal/vpuri/roughWavyWall/p47
-S:=/home/vpuri/Nek5000/core
-SCMT:=/home/vpuri/Nek5000/core/cmt
+CASEDIR:=/lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/run/wavyWall/rww-nofilt/p7
+S:=/lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/core
+SCMT:=/lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/core/cmt
 OPT_INCDIR=./
 OBJDIR=obj
 MPI:=1
 CMT:=0
 NEKNEK:=0
-FC:=mpixlf77
-CC:=mpixlc
-FFLAGS:= -qrealsize=8 -qdpc=e -qsuffix=cpp=f -qsuppress=cmpmsg
-CFLAGS:=
-PPPO=-WF,
-PPS= MPI TIMER
+FC:=mpiifort
+CC:=mpiicc
+FFLAGS:=-O3 -xMIC-AVX512 -r8 -fpconstant -fpp
+CFLAGS:=-O3 -xMIC-AVX512
+PPPO=
+PPS= MPI UNDERSCORE TIMER
 USR:=
-USR_LFLAGS:= -L/home/vpuri/Nek5000/3rd_party/gslib/lib -lgs
+USR_LFLAGS:= -L/lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17/3rd_party/gslib/lib -lgs
 VISIT:=0
 VISIT_IFLAGS=
 VISIT_LFLAGS=

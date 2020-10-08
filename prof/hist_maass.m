@@ -4,7 +4,7 @@
 % points
 nx=10;  % nx=number of x-points
 ny=100; % ny=number of y points per x-location
-h=0.60; % height to go up to in Y
+h=0.50; % height to go up to in Y
 casename='smoothWavyWall';
 %-----------------------------------------------------%
 % get x locations from maass

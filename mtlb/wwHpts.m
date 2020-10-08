@@ -10,7 +10,7 @@
 %	nely=16;
 %elseif(strcmp(casename,'roughWavyWall'))
 %	nelx=128;
-%	nely=32;
+%	nely=24;
 %end
 % create mesh
 %xmesh=sem1dmesh(lx1,nelx,0); % \in [0,1]
@@ -25,13 +25,16 @@ clear;
 %-----------------------------------------------------%
 % points
 nx=101; % nx=number of x-points
-ny=100; % ny=number of y points per x-location
-h=0.60; % height to go up to in Y
+ny=101; % ny=number of y points per x-location
+h=0.50; % height to go up to in Y
 casename='smoothWavyWall';
+casename='roughWavyWall';
 %-----------------------------------------------------%
 % geometry
 [x,y]=meshgrid(linspace(0,1,nx),linspace(0,h,ny));
 [x,y,xw,yw] = wavyWall(x,y,casename);
+
+%mesh(x,y,0*x);view(2); pause
 
 x = reshape(x,[nx*ny,1]);
 y = reshape(y,[nx*ny,1]);
