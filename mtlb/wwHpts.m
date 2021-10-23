@@ -21,8 +21,9 @@
 %ymesh=ymesh*ones(1,nxmesh);
 
 %-----------------------------------------------------%
-clear;
+function wwHpts(casename)
 %-----------------------------------------------------%
+%clear;
 % points
 nx=101; % nx=number of x-points
 ny=101; % ny=number of y points per x-location

@@ -2,10 +2,7 @@
 % history points for wavy wall cases
 % in X-Y plane going up to Y=0.5
 %
-function meshpts(casename)
-
-%casename = 'smoothWavyWall';
-%casename = 'roughWavyWall';
+function wwMpts(casename) % mesh points
 
 lx1=8;
 xlen=1;
