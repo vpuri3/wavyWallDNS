@@ -15,8 +15,8 @@ elseif(strcmp(casename,'roughWavyWall'))
 	nely=32*ylen;
 end
 
-x=sem1dmesh(lx1,nelx,0)*xlen; % \in [0,1]
-y=sem1dmesh(lx1,nely,1)*ylen;
+x=semmesh(nelx,lx1,0)*xlen; % \in [0,1]
+y=semmesh(nely,lx1,1)*ylen;
 nx=length(x);
 ny=length(y);
 x=ones(ny,1)*x'; % vectors of size (ny,nx)
@@ -38,6 +38,6 @@ format long
 A = [x,y,z];
 casename=[casename,'.his'];
 fID = fopen(casename,'w');
-fprintf(fID, [num2str(nx*ny) ' !=',num2str(nx),'x',num2str(ny),' monitoring points\n']);
+fprintf(fID, [num2str(nx*ny) ' != nx= ',num2str(nx),' ,ny= ',num2str(ny),' monitoring points\n']);
 dlmwrite(casename,A,'delimiter',' ','-append');
 type(casename)

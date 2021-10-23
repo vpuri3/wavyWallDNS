@@ -1,14 +1,21 @@
-function wwPost(nx,ny,casename,visc)
+function wwPost(casename)
 
-% nx/ny --> # points in x/y
-%
-% example: >> wwPost(101,101,'sww',1/4780) 
-%
+% >> wwPost('smoothWavyWall',1/4780) 
 
+visc = 1/4780;
 %=============================================================
 % reading data
 %=============================================================
 c0=[casename,'.his'];
+
+% get shape of hpts array
+hh = textread(c0,'%s','delimiter','\n');
+hh = hh(1);
+hh = cell2mat(hh);
+hh = split(hh,' ');
+nx = str2num(cell2mat(hh(4)));
+ny = str2num(cell2mat(hh(6)));
+
 N0=1;
 N1=nx*ny;
 

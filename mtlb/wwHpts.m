@@ -20,6 +20,8 @@
 %xmesh=ones(nymesh,1)*xmesh';
 %ymesh=ymesh*ones(1,nxmesh);
 
+%casename='smoothWavyWall';
+%casename='roughWavyWall';
 %-----------------------------------------------------%
 function wwHpts(casename)
 %-----------------------------------------------------%
@@ -28,8 +30,6 @@ function wwHpts(casename)
 nx=101; % nx=number of x-points
 ny=101; % ny=number of y points per x-location
 h=0.50; % height to go up to in Y
-casename='smoothWavyWall';
-casename='roughWavyWall';
 %-----------------------------------------------------%
 % geometry
 [x,y]=meshgrid(linspace(0,1,nx),linspace(0,h,ny));
@@ -47,6 +47,6 @@ format long
 A = [x,y,z];
 casename=[casename,'.his'];
 fID = fopen(casename,'w');
-fprintf(fID, [num2str(nx*ny) ' !=',num2str(nx),'x',num2str(ny),' monitoring points\n']);
+fprintf(fID, [num2str(nx*ny) ' != nx= ',num2str(nx),' ,ny= ',num2str(ny),' monitoring points\n']);
 dlmwrite(casename,A,'delimiter',' ','-append');
 type(casename)
