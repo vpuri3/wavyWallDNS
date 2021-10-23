@@ -15,8 +15,8 @@ elseif(strcmp(casename,'roughWavyWall'))
 	nely=32*ylen;
 end
 
-x=semmesh(nelx,lx1,0)*xlen; % \in [0,1]
-y=semmesh(nely,lx1,1)*ylen;
+x= 0.5*(1+semmesh(nelx,lx1,0))*xlen; % \in [0,1]
+y= 0.5*(1+semmesh(nely,lx1,1))*ylen;
 nx=length(x);
 ny=length(y);
 x=ones(ny,1)*x'; % vectors of size (ny,nx)

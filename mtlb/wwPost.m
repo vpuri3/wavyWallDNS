@@ -165,8 +165,8 @@ elseif(strcmp(casename,'roughWavyWall'))
 end
 
 % create mesh
-xmesh=semmesh(lx1,nelx,0)*xlen; % \in [0,1]
-ymesh=semmesh(lx1,nely,1);
+xmesh=0.5*(1+semmesh(nelx,lx1,0))*xlen; % \in [0,1]
+ymesh=0.5*(1+semmesh(nely,lx1,1));
 nxmesh=length(xmesh);
 nymesh=length(ymesh);
 xmesh=ones(nymesh,1)*xmesh';
@@ -185,7 +185,7 @@ elseif(strcmp(casename,'roughWavyWall'))
 end
 
 %=============================================================
-if(0) % mesh
+if(1) % mesh
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -210,96 +210,7 @@ figname=[cname,'-','mesh'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % quiver plot
-%------------------------------
-Ix=1:10:nx;
-Iy=1:10:ny;
-xq=x(Iy,Ix);
-yq=y(Iy,Ix);
-uq=u(Iy,Ix);
-vq=v(Iy,Ix);
-
-% reference quiver
-sy=length(Iy);
-sx=length(Ix);
-xq=[xq,nan*ones(sy,1)];xq(end,end)=xq(end,2);
-yq=[yq,nan*ones(sy,1)];yq(end,end)=y (end,1)+5e-3;
-uq=[uq,nan*ones(sy,1)];uq(end,end)=1.0;
-vq=[vq,nan*ones(sy,1)];vq(end,end)=0.0;
-%------------------------------
-figure;
-fig=gcf;ax=gca;
-hold on;grid on; % title
-title([casename,' Mean Flow Field'],'fontsize',14)
-% pos
-daspect([1,1,1]);
-set(fig,'position',[585,1e3,1000,500])
-% ax
-ax.XScale='linear';ax.YScale='linear';ax.FontSize=14;
-xlim([min(min(x)),max(max(x))]);
-ylim([min(min(y)),max(max(y))+0.02]);
-xlabel('$$x/\lambda$$');
-ylabel('$$y$$');
-% lgd
-%lgd=legend('location','southeast');lgd.FontSize=14;
-
-quiver(xq,yq,uq,vq,'k','linewidth',1,'displayname','Velocity')
-text(xq(end,end),yq(end,end),'U','verticalalignment','bottom','fontsize',14);
-plot(xw,yw,'k--','linewidth',1.50,'displayname','Bottom Wall');
-%------------------------------
-figname=[cname,'-','vel'];
-saveas(fig,figname,'jpeg');
-end
-%=============================================================
-if(0) % streamlines
-%------------------------------
-Ix=1:10:nx;
-Iy=1:10:ny;
-xq=x(Iy,Ix);
-yq=y(Iy,Ix);
-uq=u(Iy,Ix);
-vq=v(Iy,Ix);
-
-% reference quiver
-sy=length(Iy);
-sx=length(Ix);
-xq=[xq,nan*ones(sy,1)];xq(end,end)=xq(end,2);
-yq=[yq,nan*ones(sy,1)];yq(end,end)=y (end,1)+5e-3;
-uq=[uq,nan*ones(sy,1)];uq(end,end)=1.0;
-vq=[vq,nan*ones(sy,1)];vq(end,end)=0.0;
-
-strtx = x(Iy,1);
-strty = y(Iy,1);
-%------------------------------
-
-figure;
-fig=gcf;ax=gca;
-hold on;grid on;
-title([casename,' '],'fontsize',14)
-% pos
-daspect([1,1,1]);
-set(fig,'position',[585,1e3,1000,500])
-% ax
-ax.XScale='linear';ax.YScale='linear';ax.FontSize=14;
-xlim([min(min(x)),max(max(x))]);
-ylim([min(min(y)),max(max(y))+0.02]);
-xlabel('$$x/\lambda$$');
-ylabel('$$y$$');
-
-% wall
-plot(xw,yw,'k','linewidth',1.50,'displayname','Bottom Wall');
-% quiver
-quiver(xq,yq,uq,vq,'k','displayname','Velocity')
-text(xq(end,end),yq(end,end),'U','verticalalignment','bottom','fontsize',14);
-% streamline
-streamline(x,y,u,v,strtx,strty,[1e-1,1e4]);
-plot(strtx,strty,'kx','linewidth',0.5)
-%------------------------------
-figname=[cname,'-','streamline'];
-saveas(fig,figname,'jpeg');
-end
-%=============================================================
-if(0) % surface stresses
+if(1) % surface stresses
 %------------------------------
 figure;
 fig=gcf;ax=gca;
@@ -362,14 +273,14 @@ bplt(x,y,imK,im(:,:,1),im(:,:,2),im(:,:,3),Tmavg,visc,cname,'Imbalance','im');
 %-------------------------------------------------------------
 end
 %=============================================================
-bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection Hom','cnH');
-bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation Hom','epH');
+%bplt(x,y,cnK,cn(:,:,1),cn(:,:,2),cn(:,:,3),Tmavg,visc,cname,'Convection Hom','cnH');
+%bplt(x,y,epK,ep(:,:,1),ep(:,:,2),ep(:,:,3),Tmavg,visc,cname,'Dissipation Hom','epH');
 %=============================================================
-if(0) % scalar fields
+if(1) % scalar fields
 %-------------------------------------------------------------
-cplt(x,y,xw,yw,ep(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
-cplt(x,y,xw,yw,ep(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');
-cplt(x,y,xw,yw,ep(:,:,3),1,cname,'Dissipation','ep33','$$\epsilon_{11}$$');
+cplt(x,y,xw,yw,pr(:,:,1),1,cname,'Dissipation','ep11','$$\epsilon_{11}$$');
+cplt(x,y,xw,yw,pr(:,:,2),1,cname,'Dissipation','ep22','$$\epsilon_{11}$$');
+cplt(x,y,xw,yw,pr(:,:,3),1,cname,'Dissipation','ep33','$$\epsilon_{11}$$');
 %=============================================================
 end
 %-------------------------------------------------------------
