@@ -12,7 +12,6 @@ figure;
 fig=gcf;ax=gca;
 %------------------------------
 hold on;grid on;
-% title
 title([casename,' ',qtyname],'fontsize',14);
 % pos
 daspect([1,1,1]);set(fig,'position',[0,0,1000,500])
