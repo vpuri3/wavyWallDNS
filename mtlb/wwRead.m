@@ -4,6 +4,7 @@ function [xyz,vel,var,upl,bud] = wwRead(casename,dir)
 
 visc = 1/4780;
 dsty = 1;
+delta=0.5;      % half height
 
 %--------------------------------------------------
 % parsing logfile
@@ -24,24 +25,21 @@ area=find(~cellfun(@isempty,strfind(logfile,'area:')));
 area=logfile(area(end));
 area=cell2mat(area);
 area=str2num(area(6:end));
-% % Ufavg - average friction velocity
-%ufavg=find(~cellfun(@isempty,strfind(logfile,'Ufavg:')));
-%ufavg=logfile(ufavg(end));
-%ufavg=cell2mat(ufavg);
-%ufavg=str2num(ufavg(7:end));
+% Ufavg - average friction velocity
+ufavg=find(~cellfun(@isempty,strfind(logfile,'Ufavg:')));
+ufavg=logfile(ufavg(end));
+ufavg=cell2mat(ufavg);
+ufavg=str2num(ufavg(7:end));
 
 ufavg=sqrt(Tmavg/dsty);
+Re_tau = ufavg*delta/visc;
 
-['Tmavg=',num2str(Tmavg)]
-['area=' ,num2str(area) ]
-['ufavg=',num2str(ufavg)]
+[casename,' Tmavg, area, ufavg, Re_tau = ',num2str(Tmavg),' ', num2str(area),' ', num2str(ufavg),' ', num2str(Re_tau)]
 %--------------------------------------------------
+% get history points shape, size
 
 c0=[dir,casename,'.his'];
-u0=[dir,'ave.dat'];
-u1=[dir,'upl.dat'];
 
-% get shape of hpts array
 hh = textread(c0,'%s','delimiter','\n');
 hh = hh(1);
 hh = cell2mat(hh);
@@ -49,8 +47,12 @@ hh = split(hh,' ');
 nx = str2num(cell2mat(hh(4)));
 ny = str2num(cell2mat(hh(6)));
 
-N0=1;
-N1=nx*ny;
+N0 = 1;
+N1 = nx*ny;
+%--------------------------------------------------
+
+u0=[dir,'ave.dat'];
+u1=[dir,'upl.dat'];
 
 C =dlmread(c0,' ',[N0 0 N1 2]); % X,Y,Z
 U1=dlmread(u0,'' ,[N0 1 N1 4]); % vx,vy,vz,pr
@@ -68,10 +70,7 @@ p=U1(:,4);
 up=U2(:,1);
 yp=U2(:,2);
 Tm=U2(:,3);
-
-uf=sqrt(Tm/1.0); % friction velocity
-%delta=0.5;      % half height
-%Re_tau = ufriction*delta/visc;
+uf = sqrt(Tm/1.0); % average friction velocity
 
 tk=dlmread([dir,'var.dat'],'',[N0 1 N1 4]); % < u' * u' >
 
