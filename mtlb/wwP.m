@@ -174,7 +174,7 @@ ylabel('$$y^+$$');
 lgd=legend('location','northwest');lgd.FontSize=14;
 
 % (ny,nx,N)
-npt = 16;
+npt = 8;
 plot(xyzS(npt,:,1),uplS(npt,:,2),'r-','linewidth',1.50,'displayname','SWW');
 plot(xyzR(npt,:,1),uplR(npt,:,2),'b-','linewidth',1.50,'displayname','RWW');
 
