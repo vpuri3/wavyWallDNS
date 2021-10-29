@@ -86,8 +86,8 @@ ylabel('$$\frac{\dot{\eta_{ij}}}{u_\tau^4/\nu}$$');
 for i=1:8
     cci = convertStringsToChars(cc(i));
     bbi = convertStringsToChars(bb(i));
-    plot(ySn,budS(:,:,4,i)/srbS,[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',bbi,' K']);
-    plot(yRn,budR(:,:,4,i)/srbR,[cci,'--'],'linewidth',1.50,'displayname',['RWW ',bbi,' K']);
+    plot(ySn,budS(:,:,4,i) / srbS,[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',bbi,' K']);
+    plot(yRn,budR(:,:,4,i) / srbR,[cci,'--'],'linewidth',1.50,'displayname',['RWW ',bbi,' K']);
 end
 
 figname=['line','-','bud'];

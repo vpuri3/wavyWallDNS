@@ -233,13 +233,13 @@ if(0)
 bplt(x,y,tkK,tk(:,:,1),tk(:,:,2),tk(:,:,3),Tmavg,visc,cname,'Reynolds Stresses','rs');
 end
 %=============================================================
-if(1) % scalar fields
+if(1) % budgets TKE
 for i=1:9
     bbi      = convertStringsToChars(bb(i));
     budgetsi = convertStringsToChars(budgets(i));
-    cplt(xyzS(:,:,1),xyzS(:,:,2),xwS,ywS,budS(:,:,4,1),1,'sww'...
+    cplt(xyzS(:,:,1),xyzS(:,:,2),xwS,ywS,budS(:,:,4,i),1,'sww'...
              ,[budgetsi,' K'],[bbi,'K'],'$$\eta$$');
-    cplt(xyzR(:,:,1),xyzR(:,:,2),xwR,ywR,budR(:,:,4,1),1,'rww'...
+    cplt(xyzR(:,:,1),xyzR(:,:,2),xwR,ywR,budR(:,:,4,i),1,'rww'...
              ,[budgetsi,' K'],[bbi,'K'],'$$\eta$$');
 end
 %=============================================================
