@@ -164,7 +164,7 @@ figure;
 fig=gcf;ax=gca;
 hold on;grid on;
 % title
-title(['Yplus of first point off the wall'],'fontsize',14)
+title(['$$y^+$$ of first point off the wall'],'fontsize',14)
 % ax
 ax.XScale='linear';ax.YScale='linear';ax.FontSize=14;
 xlim([0,1]);
@@ -174,7 +174,7 @@ ylabel('$$y^+$$');
 lgd=legend('location','northwest');lgd.FontSize=14;
 
 % (ny,nx,N)
-npt = 8;
+npt = 1;
 plot(xyzS(npt,:,1),uplS(npt,:,2),'r-','linewidth',1.50,'displayname','SWW');
 plot(xyzR(npt,:,1),uplR(npt,:,2),'b-','linewidth',1.50,'displayname','RWW');
 
