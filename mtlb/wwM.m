@@ -238,7 +238,9 @@ for i=1:9
     bbi      = convertStringsToChars(bb(i));
     budgetsi = convertStringsToChars(budgets(i));
     cplt(xyzS(:,:,1),xyzS(:,:,2),xwS,ywS,budS(:,:,4,1),1,'sww'...
-             ,[budgetsi,' K'],[bbi,'K'],'abc');
+             ,[budgetsi,' K'],[bbi,'K'],'$$\eta$$');
+    cplt(xyzR(:,:,1),xyzR(:,:,2),xwR,ywR,budR(:,:,4,1),1,'rww'...
+             ,[budgetsi,' K'],[bbi,'K'],'$$\eta$$');
 end
 %=============================================================
 end
