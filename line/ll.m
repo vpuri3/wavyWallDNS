@@ -230,7 +230,7 @@ srwwb   = 1 / (utaurww ^4/nurww );
 schanb  = 1 / (utauchan^4/nuchan);
 
 %=============================================================
-if(0) % vel
+if(1) % vel
 ttl   = ['Mean Streamwise Velocity'];
 %------------------------------
 figure; fig=gcf; ax=gca; ax.FontSize=14;
@@ -251,7 +251,7 @@ figname=[cname,'-','vel'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % budgets
+if(1) % budgets
 ttl = ['Turbulent Kinetic Energy Budgets'];
 %------------------------------
 figure; fig=gcf; ax=gca; ax.FontSize=14;
@@ -281,7 +281,7 @@ figname=[cname,'-','tke-budgets'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(0) % rs
+if(1) % rs
 ttl = ['Reynolds Stresses'];
 %------------------------------
 figure; fig=gcf; ax=gca; ax.FontSize=14;
@@ -307,7 +307,7 @@ figname=[cname,'-','rs'];
 saveas(fig,figname,'jpeg');
 end
 %=============================================================
-if(1) % imbalance
+if(0) % imbalance
 imsww = abs(imsww); imKsww = abs(imKsww);
 imrww = abs(imrww); imKrww = abs(imKrww);
 

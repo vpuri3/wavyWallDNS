@@ -4,8 +4,8 @@ visc = 1/4780;
 dsty = 1;
 delta=0.5; % half height
 
-[xyzS,velS,varS,uplS,budS] = wwRead('smoothWavyWall','../data/swwLine/');
-[xyzR,velR,varR,uplR,budR] = wwRead('roughWavyWall' ,'../data/rwwLine/');
+[xyzS,velS,varS,uplS,budS,miscS] = wwRead('smoothWavyWall','../data/swwLine/');
+[xyzR,velR,varR,uplR,budR,miscR] = wwRead('roughWavyWall' ,'../data/rwwLine/');
 
 budgets = ["Convection", "Production", "Pressure Transport", "Pressure Diffusion"...
           ,"Pressure Strain", "Turbulent Diffusion", "Dissipation", "Viscous Diffusion"...
@@ -13,18 +13,36 @@ budgets = ["Convection", "Production", "Pressure Transport", "Pressure Diffusion
 bb = ["cn", "pr", "pt", "pd", "ps", "td", "ep", "vd", "im"];
 
 cc = ["r","g","b","c","m","y","k","r"];
-vv = ["11","22","33"];
+vv = ["11","22","33","TKE"];
 
-ufS = uplS(1,1,4);
-ufR = uplR(1,1,4);
-RetauS = delta * ufS / visc;
-RetauR = delta * ufR / visc;
+%------------------------------
+atimeS = miscS(1);
+atimeR = miscR(1);
 
-srsS = ufS * ufS;
-srsR = ufR * ufR;
+TmavgS = miscS(2);
+TmavgR = miscR(2);
 
-srbS = ufS^4 / visc;
-srbR = ufR^4 / visc;
+ufavgS = miscS(3);
+ufavgR = miscR(3);
+
+Re_tauS = miscS(4);
+Re_tauR = miscR(4);
+
+% scaling
+scaleRS_S = 1 / ufavgS ^2;
+scaleRS_R = 1 / ufavgR ^2;
+
+scaleB_S = 1 / (ufavgS ^4/visc);
+scaleB_R = 1 / (ufavgr ^4/visc);
+
+budS = budS * scaleB_S;
+budR = budR * scaleB_R;
+
+varS = varS * scaleRS_S;
+varR = varR * scaleRS_R;
+
+unitsRS = '$$\eta_{ij}/u_\tau^2$$';
+unitsB  = '$$\frac{\dot{\eta_{ij}}}{u_\tau^4/\nu}$$'; 
 
 %=============================================================
 
@@ -59,15 +77,12 @@ title('Reynolds Stresses','fontsize',14);
 xlabel('$$\bar{y}/H$$');
 ylabel('$$\frac{\eta_{ij}}{u_{\tau^2}}$$');
 
-for i=1:3
+for i=1:4
     cci = convertStringsToChars(cc(i));
     vvi = convertStringsToChars(vv(i));
-    plot(ySn,varS(:,:,i) / srsS,[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',vvi]);
-    plot(yRn,varR(:,:,i) / srsR,[cci,'--'],'linewidth',1.50,'displayname',['RWW ',vvi]);
+    plot(ySn,varS(:,:,i),[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',vvi]);
+    plot(yRn,varR(:,:,i),[cci,'--'],'linewidth',1.50,'displayname',['RWW ',vvi]);
 end
-
-plot(ySn,varS(:,:,5) / srsS,'k-' ,'linewidth',1.50,'displayname','SWW TKE');
-plot(yRn,varR(:,:,5) / srsR,'k--','linewidth',1.50,'displayname','RWW TKE');
 
 figname=['line','-','rs'];
 saveas(fig,figname,'jpeg');
@@ -86,8 +101,8 @@ ylabel('$$\frac{\dot{\eta_{ij}}}{u_\tau^4/\nu}$$');
 for i=1:8
     cci = convertStringsToChars(cc(i));
     bbi = convertStringsToChars(bb(i));
-    plot(ySn,budS(:,:,4,i) / srbS,[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',bbi,' K']);
-    plot(yRn,budR(:,:,4,i) / srbR,[cci,'--'],'linewidth',1.50,'displayname',['RWW ',bbi,' K']);
+    plot(ySn,budS(:,:,4,i),[cci,'-' ],'linewidth',1.50,'displayname',['SWW ',bbi,' K']);
+    plot(yRn,budR(:,:,4,i),[cci,'--'],'linewidth',1.50,'displayname',['RWW ',bbi,' K']);
 end
 
 figname=['line','-','bud'];

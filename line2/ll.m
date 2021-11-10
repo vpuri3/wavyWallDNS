@@ -2,67 +2,7 @@
 N0=1;
 N1=129;
 %=============================================================
-% reading channel
-
-dir = 'channel/';
-casename='channel';
-nuchan=1/13650;
-c0=[casename,'.his'];
-
-u0='ave.dat';
-u1='upl.dat';
-
-C =dlmread([dir,c0],' ',[N0 0 N1 2]); % X,Y,Z
-U1=dlmread([dir,u0],'' ,[N0 1 N1 4]); % vx,vy,vz,pr
-U2=dlmread([dir,u1],'' ,[N0 1 N1 3]); % uplus,yplus
-
-xchan=C (:,1);
-ychan=C (:,2);
-zchan=C (:,3);
-uchan=U1(:,1);
-vchan=U1(:,2);
-wchan=U1(:,3);
-pchan=U1(:,4);
-
-upchan=U2(:,1);
-ypchan=U2(:,2);
-Tmchan=U2(:,3);
-
-Tmchan=Tmchan(1);                 % shear magnitude
-utauchan=sqrt(Tmchan/1.0);        % friction velocity
-delchan=0.5;                      % half height
-Re_tauchan=utauchan*delchan/nuchan;
-
-t1='tk1.dat';
-t2='tk2.dat';
-t3='tk3.dat';
-
-tkchan=dlmread([dir,'var.dat'],'',[N0 1 N1 3]); % < u' * u' >
-cnchan=dlmread([dir,'cn1.dat'],'',[N0 1 N1 3]); % convective term
-prchan=dlmread([dir,'pr1.dat'],'',[N0 1 N1 3]); % production
-ptchan=dlmread([dir,'pt1.dat'],'',[N0 1 N1 3]); % pressure transport
-pdchan=dlmread([dir,'pd1.dat'],'',[N0 1 N1 3]); % pressure diffusion
-pschan=dlmread([dir,'ps1.dat'],'',[N0 1 N1 3]); % pressure strain
-tdchan=dlmread([dir,'td1.dat'],'',[N0 1 N1 3]); % turbulent diffusion
-epchan=dlmread([dir,'ep1.dat'],'',[N0 1 N1 3]); % dissipation
-vdchan=dlmread([dir,'vd1.dat'],'',[N0 1 N1 3]); % viscous diffusion
-
-cnKchan=dlmread([dir,t1],'',[N0 1 N1 1]);
-prKchan=dlmread([dir,t1],'',[N0 2 N1 2]);
-ptKchan=dlmread([dir,t1],'',[N0 3 N1 3]);
-pdKchan=dlmread([dir,t1],'',[N0 4 N1 4]);
-psKchan=dlmread([dir,t2],'',[N0 1 N1 1]);
-tdKchan=dlmread([dir,t2],'',[N0 2 N1 2]);
-epKchan=dlmread([dir,t2],'',[N0 3 N1 3]);
-vdKchan=dlmread([dir,t2],'',[N0 4 N1 4]);
-tkKchan=dlmread([dir,t3],'',[N0 1 N1 1]);
-imKchan=dlmread([dir,t3],'',[N0 2 N1 2]);
-divchan=dlmread([dir,t3],'',[N0 3 N1 3]);
-
-imchan = -cnchan + prchan + ptchan + tdchan + epchan + vdchan;
-
-%=============================================================
-% reading sww
+%% SWW
 
 dir = 'sww-line/';
 casename='smoothWavyWall';
@@ -122,7 +62,7 @@ divsww=dlmread([dir,t3],'',[N0 3 N1 3]);
 imsww = -cnsww + prsww + ptsww + tdsww + epsww + vdsww;
 
 %=============================================================
-% reading rww
+%% RWW
 
 dir = 'rww-line/';
 casename='roughWavyWall';
@@ -182,52 +122,17 @@ divrww=dlmread([dir,t3],'',[N0 3 N1 3]);
 imrww = -cnrww + prrww + ptrww + tdrww + eprww + vdrww;
 
 %=============================================================
-% reading kim
-
-dir = 'channel/';
-kbal=dlmread([dir,'chan395.kbal'],'',[25 0 153 8]); % Normalization: U_tau, nu/U_tau 
- ykim=kbal(:,1);
-ypkim=kbal(:,2);
-epkim=kbal(:,3);
-prkim=kbal(:,4);
-pskim=kbal(:,5);
-pdkim=kbal(:,6);
-tdkim=kbal(:,7);
-vdkim=kbal(:,8);
-imkim=kbal(:,9);
-%
-umean=dlmread([dir,'chan395.means'],'',[25 0 153 6]); % Normalization: U_tau, h 
-upkim=umean(:,3);
-utaukim=1/trapz(ykim,upkim);
-ukim=upkim*utaukim;
-ukim=ukim*utaukim;
-
-Re_taukim=392.25;
-delkim=1;
-Tmkim=utaukim^2;
-nukim=utaukim/(ypkim(end)/ykim(end));
-
-rstr=dlmread([dir,'chan395.reystress'],'',[25 0 153 7]); % Normalization: U_tau, h 
-tkkim=0.5*sum(rstr(:,3:5)')';
-%
-%=============================================================
 % plotting
 cname='line';
-n=length(ykim);
-I=1:5:n;
-tkim  = ['Kim  $$\mathrm{Re}_\tau=$$',num2str(Re_taukim)];
-tchan = ['Channel $$\mathrm{Re}_\tau=$$',num2str(Re_tauchan)];
 tsww  = ['Smooth Wavy Wall $$\mathrm{Re}_\tau=$$',num2str(Re_tausww)];
 trww  = ['Rough Wavy Wall $$\mathrm{Re}_\tau=$$',num2str(Re_taurww)];
 
 
 sswwrs  = 1 / utausww ^2;
 srwwrs  = 1 / utaurww ^2;
-schanrs = 1 / utauchan^2;
 
 sswwb   = 1 / (utausww ^4/nusww );
 srwwb   = 1 / (utaurww ^4/nurww );
-schanb  = 1 / (utauchan^4/nuchan);
 
 %=============================================================
 if(1) % vel
@@ -242,7 +147,6 @@ title(ttl,'fontsize',14);
 xlabel('$$\bar{y}/H$$');
 ylabel('$$u^+$$');
 
-plot(ychan,upchan,'k-','linewidth',2.00,'displayname',tchan);
 plot(ysww ,upsww ,'r-','linewidth',2.00,'displayname',tsww );
 plot(yrww ,uprww ,'b-','linewidth',2.00,'displayname',trww );
 

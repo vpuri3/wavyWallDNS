@@ -1,4 +1,4 @@
-function [xyz,vel,var,upl,bud] = wwRead(casename,dir)
+function [xyz,vel,var,upl,bud,misc] = wwRead(casename,dir)
 
 % >> wwPost('smoothWavyWall','./ex1/sww/') 
 
@@ -15,6 +15,7 @@ at=find(~cellfun(@isempty,strfind(logfile,'atime:')));
 at=logfile(at(end));
 at=cell2mat(at);
 at=str2num(at(7:end));
+atime = at
 % Tmavg - shear force magnitude
 Tmavg=find(~cellfun(@isempty,strfind(logfile,'Tmavg:')));
 Tmavg=logfile(Tmavg(end));
@@ -165,12 +166,11 @@ vel(:,:,2) = v;
 vel(:,:,3) = w;
 vel(:,:,4) = p;
 
-var = zeros(ny,nx,5);
+var = zeros(ny,nx,4);
 var(:,:,1) = uvar;
 var(:,:,2) = vvar;
 var(:,:,3) = wvar;
-var(:,:,4) = pvar;
-var(:,:,5) = tkK;
+var(:,:,4) = tkK;
 
 upl = zeros(ny,nx,4);
 upl(:,:,1) = up;
@@ -198,4 +198,6 @@ bud(:,:,4,6) = tdK;
 bud(:,:,4,7) = epK;
 bud(:,:,4,8) = vdK;
 bud(:,:,4,9) = imK;
+
+misc = [atime,Tmavg,ufavg,Re_tau];
 
