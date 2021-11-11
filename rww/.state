@@ -1,6 +1,0 @@
-SOURCE_ROOT=/lcrc/project/wall_bounded_flows/vpuri/Nek5000-v17
-FC=mpiifort
-FFLAGS=-O3 -xMIC-AVX512 -r8 -fpconstant -fpp
-CC=mpiicc
-CFLAGS=-O3 -xMIC-AVX512
-PPLIST= MPI UNDERSCORE TIMER
